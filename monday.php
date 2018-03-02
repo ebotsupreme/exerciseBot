@@ -1,9 +1,13 @@
 <?php
 
-require_once('./header.php');
+require_once("./header.php");
+include("db_connection.php");
+$conn = OpenCon();
+echo "Connected Successfully";
+CloseCon($conn);
+
 
 // 4 exercises per day
-
 
 ?>
 <div>Leg Day</div>
