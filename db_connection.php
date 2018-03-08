@@ -2,17 +2,19 @@
 
 function OpenCon()
 {
-    $dbhost = "localhost";
+//    $dbhost = "localhost";
     $dbuser = "root";
     $dbpass = "";
     $db     = "excerice_generator";
 
-    $conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n". $conn->error);
+//    $conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n". $conn->error);
 
-    return $conn;
+    $myPDO = new PDO("mysql:host=localhost;dbname=" . $db, $dbuser, $dbpass);
+
+    return $myPDO;
 }
 
-function CloseCon($conn)
-{
-    $conn->close();
-}
+//function CloseCon($myPDO)
+//{
+//    $myPDO->close();
+//}

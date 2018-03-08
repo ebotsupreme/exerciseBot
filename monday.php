@@ -2,9 +2,16 @@
 
 require_once("./header.php");
 include("db_connection.php");
-$conn = OpenCon();
-echo "Connected Successfully";
-CloseCon($conn);
+//$conn = OpenCon();
+//echo "Connected Successfully";
+//CloseCon($conn);
+
+
+
+    $result = $myPDO->query("SELECT lastname FROM employees");
+
+
+?>
 
 
 // 4 exercises per day
