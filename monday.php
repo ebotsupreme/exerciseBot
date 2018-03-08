@@ -1,14 +1,28 @@
 <?php
 
 require_once("./header.php");
-include("db_connection.php");
-//$conn = OpenCon();
-//echo "Connected Successfully";
-//CloseCon($conn);
+require_once("db_connection.php");
 
 
+//// Insert exercise data into DB
+try{
+    $statement = $myPDO->prepare("INSERT INTO exercises (exerciseName, WeightOne, SetOne, WeightTwo, SetTwo, WeightThree, SetThree, WeightFour, SetFour)
+                                     VALUES (:exerciseName, :WeightOne, :SetOne, :WeightTwo, :SetTwo, :WeightThree, :SetThree, :WeightFour, :SetFour)
+                                     ");
+    $statement->bindParam("exerciseName", $exerciseName);
+    $statement->bindParam("WeightOne", $weightOne);
+    $statement->bindParam("SetOne", $setOne);
+    $statement->bindParam("WeightTwo", $weightTwo);
+    $statement->bindParam("SetTwo", $setTwo);
+    $statement->bindParam("WeightThree", $weightThree);
+    $statement->bindParam("SetThree", $setThree);
+    $statement->bindParam("WeightFour", $weightFour);
+    $statement->bindParam("SetFour", $setFour);
+    $statement->execute();
+} catch (Exception $e) {
+    echo 'Caught exception: ', $e->getMessage(), "\n";
+}
 
-    $result = $myPDO->query("SELECT lastname FROM employees");
 
 
 ?>
