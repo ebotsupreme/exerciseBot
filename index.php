@@ -1,6 +1,8 @@
 <?php
-require_once('includes/header.php');
-require_once('view/monday.php');
+
+require_once (__DIR__ . "/config.php");
+require_once(SITE_ROOT . "/includes/header.php");
+
 ?>
 <body>
 
