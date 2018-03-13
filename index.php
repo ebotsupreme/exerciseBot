@@ -1,10 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: EJ
- * Date: 12/19/2017
- * Time: 7:30 PM
- */
+require_once('includes/header.php');
+require_once('view/monday.php');
 ?>
 <body>
 
@@ -13,7 +9,7 @@
 <div>Choose your day:</div>
 <br>
 
-<div><a href="/exercise_generator/monday.php">Monday</a></div>
+<div><a href="/exercise_generator/view/monday.php">Monday</a></div>
 <div><a href="/tuesday.php">Tuesday</a></div>
 <div><a href="/wednesday.php">Wednesday</a></div>
 <div><a href="/thursday.php">Thursday</a></div>
