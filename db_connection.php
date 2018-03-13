@@ -1,10 +1,16 @@
 <?php
 
-    $dbhost = "localhost";
-    $dbuser = "root";
-    $dbpass = "";
-    $db     = "exercisor";
+    $host = "localhost";
+    $user = "root";
+    $pass = "";
+    $db   = "exercisor";
 
-    $myPDO = new PDO("mysql:host=$dbhost;dbname=$db", $dbuser, $dbpass);
+    try {
+        $myPDO = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+
+        echo "Connected<p>";
+    } catch (Exception $e) {
+        echo "Unable to connect: " . $e->getMessage() . "<p>";
+    }
 
 

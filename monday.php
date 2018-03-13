@@ -3,34 +3,47 @@
 require_once("./header.php");
 require_once("db_connection.php");
 
-
-//// Insert exercise data into DB
-try{
-    $statement = $myPDO->prepare("INSERT INTO exercises (exerciseName, WeightOne, SetOne, WeightTwo, SetTwo, WeightThree, SetThree, WeightFour, SetFour)
-                                     VALUES (:exerciseName, :WeightOne, :SetOne, :WeightTwo, :SetTwo, :WeightThree, :SetThree, :WeightFour, :SetFour)
-                                     ");
+$exerciseName = "Squats";
+try {
+    $statement = $myPDO->prepare("SELECT * 
+                                            FROM exercises
+                                            WHERE exerciseName = :exerciseName");
     $statement->bindParam("exerciseName", $exerciseName);
-    $statement->bindParam("WeightOne", $weightOne);
-    $statement->bindParam("SetOne", $setOne);
-    $statement->bindParam("WeightTwo", $weightTwo);
-    $statement->bindParam("SetTwo", $setTwo);
-    $statement->bindParam("WeightThree", $weightThree);
-    $statement->bindParam("SetThree", $setThree);
-    $statement->bindParam("WeightFour", $weightFour);
-    $statement->bindParam("SetFour", $setFour);
     $statement->execute();
+    $exercise_Ar = $statement->fetchAll();
+
+    echo "<pre><br>";
+    print_r($exercise_Ar);
+    echo "</pre><br>";
 } catch (Exception $e) {
-    echo 'Caught exception: ', $e->getMessage(), "\n";
+    $dbError = $e->getMessage();
 }
 
+//// Insert exercise data into DB
+//try{
+//    $statement = $myPDO->prepare("INSERT INTO exercises (exerciseName, WeightOne, SetOne, WeightTwo, SetTwo, WeightThree, SetThree, WeightFour, SetFour)
+//                                     VALUES (:exerciseName, :WeightOne, :SetOne, :WeightTwo, :SetTwo, :WeightThree, :SetThree, :WeightFour, :SetFour)
+//                                     ");
+//    $statement->bindParam("exerciseName", $exerciseName);
+//    $statement->bindParam("WeightOne", $weightOne);
+//    $statement->bindParam("SetOne", $setOne);
+//    $statement->bindParam("WeightTwo", $weightTwo);
+//    $statement->bindParam("SetTwo", $setTwo);
+//    $statement->bindParam("WeightThree", $weightThree);
+//    $statement->bindParam("SetThree", $setThree);
+//    $statement->bindParam("WeightFour", $weightFour);
+//    $statement->bindParam("SetFour", $setFour);
+//    $statement->execute();
+//} catch (Exception $e) {
+//    echo 'Caught exception: ', $e->getMessage(), "\n";
+//}
+
 
 
 ?>
 
+<!--4 exercises per day-->
 
-// 4 exercises per day
-
-?>
 <div>Leg Day</div>
 <br>
 <div>E1 - Squats</div>
