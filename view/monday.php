@@ -1,7 +1,7 @@
 <?php
 
 require_once (__DIR__ . "/../config.php");
-require_once(SITE_ROOT . "./includes/header.php");
+require_once(SITE_ROOT . "/./includes/header.php");
 
 ?>
 
@@ -11,7 +11,7 @@ require_once(SITE_ROOT . "./includes/header.php");
 <br>
 <div>E1 - Squats</div>
 <br>
-<form action="../calls.php" method="post" name="enterSquats">
+<form action="../controller/controller.php" method="post" name="enterSquats">
     <div style="font-weight: 600;">Set 1:</div>
     <div style="display: inline-block;">
         <label for="squatWeight1">Weight: </label>
