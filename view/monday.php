@@ -1,7 +1,7 @@
 <?php
 
-require_once("../includes/header.php");
-require_once("../model/db_connection.php");
+require_once (__DIR__ . "/../config.php");
+require_once(SITE_ROOT . "./includes/header.php");
 
 ?>
 
