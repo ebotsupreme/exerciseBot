@@ -12,6 +12,7 @@ require_once(SITE_ROOT . "/./includes/header.php");
 <div>E1 - Squats</div>
 <br>
 <form action="../controller/controller.php" method="post" name="enterSquats">
+    <input type="hidden" name="squats" value="Squats">
     <div style="font-weight: 600;">Set 1:</div>
     <div style="display: inline-block;">
         <label for="squatWeight1">Weight: </label>

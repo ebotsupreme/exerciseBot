@@ -9,5 +9,17 @@ require (SITE_ROOT . "/./view/monday.php");
 require_once(SITE_ROOT . "/./model/db_connection.php");
 
 if (null !== (filter_input(INPUT_POST,"submitSquats"))) {
+    $exerciseName   = "";
+    $exerciseName   = $_POST["squats"];
+    $weightOne      = $_POST["squatWeight1"];
+    $setOne         = $_POST["squatRep1"];
+    $weightTwo      = $_POST["squatWeight2"];
+    $setTwo         = $_POST["squatRep2"];
+    $weightThree    = $_POST["squatWeight3"];
+    $setThree       = $_POST["squatRep3"];
+    $weightFour     = $_POST["squatWeight4"];
+    $setFour        = $_POST["squatRep4"];
 
+    exerciseLogCreate($exerciseName, $weightOne, $setOne, $weightTwo, $setTwo, $weightThree, $setThree, $weightFour, $setFour);
 }
+// $exerciseName, $weightOne, $setOne, $weightTwo, $setTwo, $weightThree, $setThree, $weightFour, $setFour
