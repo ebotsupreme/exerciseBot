@@ -1,7 +1,14 @@
 <?php
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+
 require_once (__DIR__ . "/../config.php");
-require_once(SITE_ROOT . "./model/db_connection.php");
+//include(SITE_ROOT . "./model/db_connection.php");
+
+function first($int, $string){ //function parameters, two variables.
+    return $string;  //returns the second argument passed into the function
+}
 
 function getAllExercises($exerciseName)
 {
