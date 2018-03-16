@@ -11,9 +11,11 @@ function first($int, $string){ //function parameters, two variables.
 }
 
 function getAllExercises($exerciseName)
-{
+{// Call the PDO class
+    $databaseConnect = new DatabaseConnect("localhost", "root", "", "exercisor");
+    $pdo = $databaseConnect->getPdo();
     try {
-        $statement = $myPDO->prepare("SELECT * 
+        $statement = $pdo->prepare("SELECT * 
                                             FROM exercises
                                             WHERE exerciseName = :exerciseName");
         $statement->bindParam("exerciseName", $exerciseName);
@@ -52,6 +54,8 @@ function exerciseLogCreate($exerciseName, $weightOne, $setOne, $weightTwo, $setT
         $statement->bindParam("SetFour", $setFour);
         $statement->execute();
 
+        $message = "Your exercise has been saved!";
+        echo "<script type='text/javascript'>alert('$message');</script>";
     } catch (Exception $e) {
         echo 'Caught exception: ', $e->getMessage(), "\n";
     }
