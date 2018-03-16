@@ -31,14 +31,15 @@ function getAllExercises($exerciseName)
 
 function exerciseLogCreate($exerciseName, $weightOne, $setOne, $weightTwo, $setTwo, $weightThree, $setThree, $weightFour, $setFour)
 {
+
     // Call the PDO class
-    $databaseConnect = new DatabaseConnect();
+    $databaseConnect = new DatabaseConnect("localhost", "root", "", "exercisor");
     $pdo = $databaseConnect->getPdo();
 
     //// Insert exercise data into DB
     try {
         $statement = $pdo->prepare("INSERT INTO exercises (dateCreated, exerciseName, WeightOne, SetOne, WeightTwo, SetTwo, WeightThree, SetThree, WeightFour, SetFour)
-                                     VALUES (:dateCreated, :exerciseName, :WeightOne, :SetOne, :WeightTwo, :SetTwo, :WeightThree, :SetThree, :WeightFour, :SetFour)
+                                     VALUES (NOW(), :exerciseName, :WeightOne, :SetOne, :WeightTwo, :SetTwo, :WeightThree, :SetThree, :WeightFour, :SetFour)
                                      ");
         $statement->bindParam("exerciseName", $exerciseName);
         $statement->bindParam("WeightOne", $weightOne);

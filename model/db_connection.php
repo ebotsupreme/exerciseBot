@@ -16,6 +16,11 @@ class DatabaseConnect {
 
     public function __construct($host, $user, $pass, $db)
     {
+        $this->host = $host;
+        $this->user = $user;
+        $this->pass = $pass;
+        $this->db = $db;
+
         try {
             $this->myPDO = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
 
