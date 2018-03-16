@@ -14,13 +14,13 @@ class DatabaseConnect {
         return $this->myPDO;
     }
 
-    public function __construct()
+    public function __construct($host, $user, $pass, $db)
     {
         try {
             $this->myPDO = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
 
             echo "Connected<p>";
-        } catch (Exception $e) {
+        } catch (PDOException $e) {
             echo "Unable to connect: " . $e->getMessage() . "<p>";
         }
     }
