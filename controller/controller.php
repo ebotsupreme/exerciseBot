@@ -13,10 +13,8 @@ require_once (SITE_ROOT . "/./model/model.php");
 $databaseConnect = new DatabaseConnect();
 $pdo = $databaseConnect->getPdo();
 
-echo first(1,"omg lol"); //returns omg lol;
-
 if (null !== (filter_input(INPUT_POST,"submitSquats"))) {
-    echo 'Starting..';
+
     $exerciseName   = "";
     $exerciseName   = $_POST["squats"];
     $weightOne      = $_POST["squatWeight1"];
@@ -27,8 +25,8 @@ if (null !== (filter_input(INPUT_POST,"submitSquats"))) {
     $setThree       = $_POST["squatRep3"];
     $weightFour     = $_POST["squatWeight4"];
     $setFour        = $_POST["squatRep4"];
- echo 'Middle';
+
     exerciseLogCreate($exerciseName, $weightOne, $setOne, $weightTwo, $setTwo, $weightThree, $setThree, $weightFour, $setFour, $pdo);
-    echo 'function called';
+
 }
 // $exerciseName, $weightOne, $setOne, $weightTwo, $setTwo, $weightThree, $setThree, $weightFour, $setFour

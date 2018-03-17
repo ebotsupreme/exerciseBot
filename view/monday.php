@@ -5,6 +5,14 @@ ini_set('display_startup_errors', 1);
 
 require_once (__DIR__ . "/../config.php");
 require_once(SITE_ROOT . "/./includes/header.php");
+require_once (SITE_ROOT . "/./model/db_connection.php");
+require_once (SITE_ROOT . "/./model/model.php");
+
+// Call the PDO class
+$databaseConnect = new DatabaseConnect();
+$pdo = $databaseConnect->getPdo();
+
+$exerciseName = "Squats";
 
 ?>
 
@@ -13,6 +21,37 @@ require_once(SITE_ROOT . "/./includes/header.php");
 <div>Leg Day</div>
 <br>
 <div>E1 - Squats</div>
+<br>
+<div>Progression:</div>
+
+<?php
+getAllExercises($exerciseName, $pdo);
+
+?>
+<table>
+    <tr>
+        <th>Exercise Name</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</table>
 <br>
 <form action="../controller/controller.php" method="post" name="enterSquats">
     <input type="hidden" name="squats" value="Squats">
