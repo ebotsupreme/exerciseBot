@@ -3,18 +3,21 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
-require_once (__DIR__ . "/../config.php");
-//include(SITE_ROOT . "./model/db_connection.php");
+require_once(__DIR__ . "/../config.php");
+require_once(SITE_ROOT . "./model/db_connection.php");
+
+// Call the PDO class
+$databaseConnect = new DatabaseConnect();
+$pdo = $databaseConnect->getPdo();
 
 function first($int, $string){ //function parameters, two variables.
     return $string;  //returns the second argument passed into the function
 }
 
-function getAllExercises($exerciseName)
-{// Call the PDO class
-    $databaseConnect = new DatabaseConnect("localhost", "root", "", "exercisor");
-    $pdo = $databaseConnect->getPdo();
+function getAllExercises($exerciseName, $pdo)
+{
     try {
+
         $statement = $pdo->prepare("SELECT * 
                                             FROM exercises
                                             WHERE exerciseName = :exerciseName");
@@ -31,15 +34,12 @@ function getAllExercises($exerciseName)
 }
 
 
-function exerciseLogCreate($exerciseName, $weightOne, $setOne, $weightTwo, $setTwo, $weightThree, $setThree, $weightFour, $setFour)
+function exerciseLogCreate($exerciseName, $weightOne, $setOne, $weightTwo, $setTwo, $weightThree, $setThree, $weightFour, $setFour, $pdo)
 {
-
-    // Call the PDO class
-    $databaseConnect = new DatabaseConnect("localhost", "root", "", "exercisor");
-    $pdo = $databaseConnect->getPdo();
 
     //// Insert exercise data into DB
     try {
+
         $statement = $pdo->prepare("INSERT INTO exercises (dateCreated, exerciseName, WeightOne, SetOne, WeightTwo, SetTwo, WeightThree, SetThree, WeightFour, SetFour)
                                      VALUES (NOW(), :exerciseName, :WeightOne, :SetOne, :WeightTwo, :SetTwo, :WeightThree, :SetThree, :WeightFour, :SetFour)
                                      ");

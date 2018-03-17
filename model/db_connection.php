@@ -2,10 +2,10 @@
 
 class DatabaseConnect {
 
-    private $host = "localhost";
-    private $user = "root";
-    private $pass = "";
-    private $db   = "exercisor";
+    private $host;
+    private $user;
+    private $pass;
+    private $db;
 
     private $myPDO = null;
 
@@ -14,14 +14,14 @@ class DatabaseConnect {
         return $this->myPDO;
     }
 
-    public function __construct($host, $user, $pass, $db)
+    public function __construct()
     {
-//        $this->host = $host;
-//        $this->user = $user;
-//        $this->pass = $pass;
-//        $this->db = $db;
+        $this->host = "localhost";
+        $this->user = "root";
+        $this->pass = "";
+        $this->db = "exercisor";
         try {
-            $this->myPDO = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+            $this->myPDO = new PDO("mysql:host=$this->host;dbname=$this->db", $this->user, $this->pass);
 
             echo "Connected<p>";
         } catch (PDOException $e) {
