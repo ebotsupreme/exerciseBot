@@ -27,6 +27,7 @@ class DatabaseConnect {
         } catch (PDOException $e) {
             echo "Unable to connect: " . $e->getMessage() . "<p>";
         }
+
     }
 
 }

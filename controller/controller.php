@@ -7,7 +7,11 @@ error_reporting(E_ALL);
 require_once (__DIR__ . "/../config.php");
 require_once (SITE_ROOT . "/./view/monday.php");
 require_once (SITE_ROOT . "/./model/db_connection.php");
-include (SITE_ROOT . "/./model/model.php");
+require_once (SITE_ROOT . "/./model/model.php");
+
+// Call the PDO class
+$databaseConnect = new DatabaseConnect();
+$pdo = $databaseConnect->getPdo();
 
 echo first(1,"omg lol"); //returns omg lol;
 
@@ -24,7 +28,7 @@ if (null !== (filter_input(INPUT_POST,"submitSquats"))) {
     $weightFour     = $_POST["squatWeight4"];
     $setFour        = $_POST["squatRep4"];
  echo 'Middle';
-    exerciseLogCreate($exerciseName, $weightOne, $setOne, $weightTwo, $setTwo, $weightThree, $setThree, $weightFour, $setFour);
+    exerciseLogCreate($exerciseName, $weightOne, $setOne, $weightTwo, $setTwo, $weightThree, $setThree, $weightFour, $setFour, $pdo);
     echo 'function called';
 }
 // $exerciseName, $weightOne, $setOne, $weightTwo, $setTwo, $weightThree, $setThree, $weightFour, $setFour
