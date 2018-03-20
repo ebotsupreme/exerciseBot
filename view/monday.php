@@ -61,7 +61,7 @@ echo "</pre><br>";
 
     ?>
     <tr>
-        <td><?= $result["dateCreated"]; ?></td>
+        <td><?= date("n/j/Y" ,strtotime($result["dateCreated"])); ?></td>
         <td><?= $result["exerciseName"]; ?></td>
         <td><?= $result["WeightOne"]; ?></td>
         <td><?= $result["SetOne"]; ?></td>
@@ -78,7 +78,7 @@ echo "</pre><br>";
     ?>
 </table>
 <br>
-<form action="../controller/controller.php" method="post" name="enterSquats">
+<form action="../controller/controller.php" method="post" name="exerciseForm">
     <input type="hidden" name="squats" value="Squats">
     <div style="font-weight: 600;">Set 1:</div>
     <div style="display: inline-block;">
@@ -120,5 +120,5 @@ echo "</pre><br>";
         <input type="number" name="squatRep4" value="" placeholder="Rep 4">
     </div>
     <br><br>
-    <input type="submit" value="Submit" name="submitSquats">
+    <input type="submit" value="Submit" name="submitExerciseDay">
 </form>
