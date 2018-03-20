@@ -23,10 +23,6 @@ function getAllExercises($exerciseName, $pdo)
         $statement->execute();
         $exercise_Ar = $statement->fetchAll();
 
-        echo "<pre><br>";
-        print_r($exercise_Ar);
-        echo "</pre><br>";
-
         return $exercise_Ar;
     } catch (PDOException $e) {
         echo 'Caught exception: ', $e->getMessage(), "\n";

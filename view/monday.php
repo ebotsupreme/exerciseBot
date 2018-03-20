@@ -54,17 +54,28 @@ echo "</pre><br>";
         <th>Weight Four</th>
         <th>Rep Four</th>
     </tr>
+    <?php
+        foreach ($getExerciseResult as $result) {
+
+
+
+    ?>
     <tr>
-        <td><?= $getExerciseResult[0]["exerciseName"] ?></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td><?= $result["dateCreated"]; ?></td>
+        <td><?= $result["exerciseName"]; ?></td>
+        <td><?= $result["WeightOne"]; ?></td>
+        <td><?= $result["SetOne"]; ?></td>
+        <td><?= $result["WeightTwo"]; ?></td>
+        <td><?= $result["SetTwo"]; ?></td>
+        <td><?= $result["WeightThree"]; ?></td>
+        <td><?= $result["SetThree"]; ?></td>
+        <td><?= $result["WeightFour"]; ?></td>
+        <td><?= $result["SetFour"]; ?></td>
     </tr>
+    <?php
+
+        }
+    ?>
 </table>
 <br>
 <form action="../controller/controller.php" method="post" name="enterSquats">
