@@ -16,6 +16,12 @@ $exerciseName = "Squats";
 
 ?>
 
+<style>
+    th {
+        width: 10%;
+    }
+</style>
+
 <!--4 exercises per day-->
 
 <div>Leg Day</div>
@@ -25,23 +31,31 @@ $exerciseName = "Squats";
 <div>Progression:</div>
 
 <?php
-getAllExercises($exerciseName, $pdo);
+
+
+$getExerciseResult =  getAllExercises($exerciseName, $pdo);
+//var_dump($getExerciseResult);
+
+echo "<pre><br>";
+print_r($getExerciseResult);
+echo "</pre><br>";
 
 ?>
 <table>
     <tr>
+        <th>Date</th>
         <th>Exercise Name</th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th>Weight One</th>
+        <th>Rep One</th>
+        <th>Weight Two</th>
+        <th>Rep Two</th>
+        <th>Weight Three</th>
+        <th>Rep Three</th>
+        <th>Weight Four</th>
+        <th>Rep Four</th>
     </tr>
     <tr>
-        <td></td>
+        <td><?= $getExerciseResult[0]["exerciseName"] ?></td>
         <td></td>
         <td></td>
         <td></td>

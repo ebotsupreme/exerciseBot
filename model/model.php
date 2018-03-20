@@ -18,7 +18,7 @@ function getAllExercises($exerciseName, $pdo)
 
         $statement = $pdo->prepare("SELECT * 
                                             FROM exercises
-                                            WHERE exerciseName = :exerciseName ORDER BY dateCreated DESC LIMIT 5");
+                                            WHERE exerciseName = :exerciseName ORDER BY dateCreated DESC LIMIT 4");
         $statement->bindParam("exerciseName", $exerciseName);
         $statement->execute();
         $exercise_Ar = $statement->fetchAll();
@@ -26,8 +26,10 @@ function getAllExercises($exerciseName, $pdo)
         echo "<pre><br>";
         print_r($exercise_Ar);
         echo "</pre><br>";
-    } catch (Exception $e) {
-        $dbError = $e->getMessage();
+
+        return $exercise_Ar;
+    } catch (PDOException $e) {
+        echo 'Caught exception: ', $e->getMessage(), "\n";
     }
 }
 
@@ -54,7 +56,7 @@ function exerciseLogCreate($exerciseName, $weightOne, $setOne, $weightTwo, $setT
 
         $message = "Your exercise has been saved!";
         echo "<script type='text/javascript'>alert('$message');</script>";
-    } catch (Exception $e) {
+    } catch (PDOException $e) {
         echo 'Caught exception: ', $e->getMessage(), "\n";
     }
 }
