@@ -8,17 +8,14 @@ require_once(SITE_ROOT . "./model/db_connection.php");
 
 $dbError = "";
 
-function first($int, $string){ //function parameters, two variables.
-    return $string;  //returns the second argument passed into the function
-}
-
 function getAllExercises($exerciseName, $pdo)
 {
     try {
 
         $statement = $pdo->prepare("SELECT * 
-                                            FROM exercises
-                                            WHERE exerciseName = :exerciseName ORDER BY dateCreated DESC LIMIT 4");
+                                    FROM exercises
+                                    WHERE exerciseName = :exerciseName 
+                                    ORDER BY dateCreated DESC LIMIT 4");
         $statement->bindParam("exerciseName", $exerciseName);
         $statement->execute();
         $exercise_Ar = $statement->fetchAll();
@@ -55,4 +52,23 @@ function exerciseLogCreate($exerciseName, $weightOne, $setOne, $weightTwo, $setT
     } catch (PDOException $e) {
         echo 'Caught exception: ', $e->getMessage(), "\n";
     }
+}
+
+function selectExercisesForDay($pdo)
+{
+    // Selecting exercises from day
+    try {
+        $statement = $pdo->prepare("SELECT exerciseName, exerciseImg 
+                                    FROM exercise_list
+                                    ORDER BY exerciseName ASC
+                                    ");
+        $statement->execute();
+        $exerciseList_Ar = $statement->fetchAll();
+
+        return $exerciseList_Ar;
+    } catch (PDOException $e) {
+        $dbError = $e->getMessage();
+        echo 'Caught exception' . $dbError, "\n";
+    }
+
 }
