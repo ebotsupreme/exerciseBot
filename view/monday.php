@@ -14,6 +14,7 @@ $pdo = $databaseConnect->getPdo();
 
 $exerciseName = "Squats";
 
+$day ="Monday";
 ?>
 
 <style>
@@ -24,11 +25,22 @@ $exerciseName = "Squats";
 
 <!--4 exercises per day-->
 
-<div>Leg Day</div>
+
+
+<div>Select your exercises for <?= $day ?>:</div>
 <br>
-<div>E1 - Squats</div>
-<br>
-<div>Progression:</div>
+
+<form action="" method="post" id="">
+    <label for="Exercise Select" style="display:inline-block">Select Exercise 1:</label>
+    <select name="exerciseSelect" id="">
+        <?php
+
+        ?>
+    </select>
+        <option name="exercise[]" value="" style="display:inline-block"></option>
+</form>
+
+
 
 <?php
 
