@@ -14,7 +14,14 @@ $pdo = $databaseConnect->getPdo();
 
 $exerciseName = "Squats";
 
+$getExercisesForDay = selectExercisesForDay($pdo);
 $day ="Monday";
+
+foreach($getExercisesForDay as $key => $value) {
+    echo "<pre><br>";
+    print_r($value);
+    echo "</pre><br>";
+}
 ?>
 
 <style>
@@ -34,10 +41,15 @@ $day ="Monday";
     <label for="Exercise Select" style="display:inline-block">Select Exercise 1:</label>
     <select name="exerciseSelect" id="">
         <?php
+            foreach($getExercisesForDay as $key => $value) {
 
+                ?>
+                <option value="<?= $value["exerciseName"] ?>" name=""><?= $value["exerciseName"] ?></option>
+                <?php
+            }
         ?>
     </select>
-        <option name="exercise[]" value="" style="display:inline-block"></option>
+    <input type="submit" value="Submit" name="submitExerciseOneForDay">
 </form>
 
 

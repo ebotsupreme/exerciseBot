@@ -58,14 +58,15 @@ function selectExercisesForDay($pdo)
 {
     // Selecting exercises from day
     try {
-        $statement = $pdo->prepare("SELECT exerciseName, exerciseImg 
-                                    FROM exercise_list
+        $statement = $pdo->prepare("SELECT exerciseName, exerciseImage 
+                                    FROM exercise_select
                                     ORDER BY exerciseName ASC
                                     ");
         $statement->execute();
         $exerciseList_Ar = $statement->fetchAll();
 
         return $exerciseList_Ar;
+
     } catch (PDOException $e) {
         $dbError = $e->getMessage();
         echo 'Caught exception' . $dbError, "\n";
