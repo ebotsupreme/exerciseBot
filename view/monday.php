@@ -41,10 +41,14 @@ foreach($getExercisesForDay as $key => $value) {
     <label for="Exercise Select" style="display:inline-block">Select Exercise 1:</label>
     <select name="exerciseSelect" id="">
         <?php
+
+            $getExerciseName = "";
+
             foreach($getExercisesForDay as $key => $value) {
+                $exerciseName = $value["exerciseName"];
 
                 ?>
-                <option value="<?= $value["exerciseName"] ?>" name=""><?= $value["exerciseName"] ?></option>
+                <option value="<?= $exerciseName ?>[<?= $key?>]" name="<?= $exerciseName ?>"><?= $exerciseName ?></option>
                 <?php
             }
         ?>

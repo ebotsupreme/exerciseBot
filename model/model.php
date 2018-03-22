@@ -73,3 +73,11 @@ function selectExercisesForDay($pdo)
     }
 
 }
+
+function exerciseForDay ($selectedExerciseOne)
+{
+    $statement = $pdo->prepare("INSERT INTO exercise_day (exerciseDay, exerciseType, exerciseName)
+                               VALUES(:exercise_day, :exerciseType, :exerciseName)
+                               ");
+    $statement->bindParam("exerciseDay", );
+}
