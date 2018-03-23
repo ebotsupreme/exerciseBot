@@ -32,7 +32,12 @@ if (null !== (filter_input(INPUT_POST,"submitExerciseDay"))) {
 // $exerciseName, $weightOne, $setOne, $weightTwo, $setTwo, $weightThree, $setThree, $weightFour, $setFour
 
 
-if (null !== filter_input(INPUT_POST, "submitExerciseOneForDay")) {
-    $selectedExerciseOne = $_POST[$exerciseName];
+if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
+    $exerciseName = $_POST[$exerciseName];
+    $exerciseOrderNumber = $_POST["exerciseOrderNumber"];
+    $exerciseDay = $_POST["exerciseDay"];
+    $exerciseType = $_POST["exerciseType"];
+
+    exerciseForDay($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo);
 }
 

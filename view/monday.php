@@ -60,7 +60,7 @@ foreach($getExercisesForDay as $key => $value) {
     // end loop here
 
     <input type="hidden" value="legs" name="exerciseType ">
-    <input type="submit" value="Submit" name="submitExerciseOneForDay">
+    <input type="submit" value="Submit" name="submitExerciseForDay">
 </form>
 
 
