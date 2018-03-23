@@ -37,7 +37,7 @@ foreach($getExercisesForDay as $key => $value) {
 <div>Select your exercises for <?= $day ?>:</div>
 <br>
 
-<form action="" method="post" id="">
+<form action="../controller/controller.php" method="post" name="selectExercisesForTheDayForm">
     <label for="Exercise Select" style="display:inline-block">Select Exercise 1:</label>
     <select name="exerciseSelect" id="">
         <?php
