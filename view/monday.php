@@ -53,6 +53,13 @@ foreach($getExercisesForDay as $key => $value) {
             }
         ?>
     </select>
+
+    // will need to do a loop here
+    <input type="hidden" value="exerciseOrderOne" name="exerciseOrderNumber">
+    <input type="hidden" value="monday" name="exerciseDay ">
+    // end loop here
+
+    <input type="hidden" value="legs" name="exerciseType ">
     <input type="submit" value="Submit" name="submitExerciseOneForDay">
 </form>
 
