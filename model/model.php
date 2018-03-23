@@ -74,10 +74,22 @@ function selectExercisesForDay($pdo)
 
 }
 
-function exerciseForDay ($selectedExerciseOne)
+function exerciseForDay ($exerciseDay, $exerciseType, $exerciseName, $selectedExerciseNumber, $pdo)
 {
-    $statement = $pdo->prepare("INSERT INTO exercise_day (exerciseDay, exerciseType, exerciseName)
-                               VALUES(:exercise_day, :exerciseType, :exerciseName)
+    try {
+    $statement = $pdo->prepare("INSERT INTO exercise_day (exerciseDay, exerciseType, exerciseName, selectedExerciseNumber)
+                               VALUES(:exerciseDay, :exerciseType, :exerciseName, :selectedExerciseNumber)
                                ");
-    $statement->bindParam("exerciseDay", );
+    $statement->bindParam("exerciseDay", $exerciseDay);
+    $statement->bindParam("exerciseType", $exerciseType);
+    $statement->bindParam("exerciseName", $exerciseName);
+    $statement->bindParam("selectedExerciseNumber", $selectedExerciseNumber);
+    $statement->execute();
+
+    $message = "Your exercise for the day has been set.";
+    echo "<script type='text/javascript'>alert('$message');</script>";
+
+    } catch (PDOException $e) {
+        echo 'Caught exception: ', $e->getMessage(), "\n";
+    }
 }
