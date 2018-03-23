@@ -47,6 +47,12 @@ foreach($getExercisesForDay as $key => $value) {
             foreach($getExercisesForDay as $key => $value) {
                 $exerciseName = $value["exerciseName"];
 
+                echo "value var:<pre><br>";
+                print_r($value);
+                echo "</pre><br>";
+
+//                if ($key == )
+
                 ?>
                 <option value="<?= $exerciseName ?>[<?= $key?>]" name="<?= $exerciseName ?>"><?= $exerciseName ?></option>
                 <?php
@@ -54,10 +60,10 @@ foreach($getExercisesForDay as $key => $value) {
         ?>
     </select>
 
-    // will need to do a loop here
+<!--     will need to do a loop here-->
     <input type="hidden" value="exerciseOrderOne" name="exerciseOrderNumber">
     <input type="hidden" value="monday" name="exerciseDay ">
-    // end loop here
+<!--     end loop here-->
 
     <input type="hidden" value="legs" name="exerciseType ">
     <input type="submit" value="Submit" name="submitExerciseForDay">
@@ -71,9 +77,9 @@ foreach($getExercisesForDay as $key => $value) {
 $getExerciseResult =  getAllExercises($exerciseName, $pdo);
 //var_dump($getExerciseResult);
 
-echo "<pre><br>";
-print_r($getExerciseResult);
-echo "</pre><br>";
+//echo "<pre><br>";
+//print_r($getExerciseResult);
+//echo "</pre><br>";
 
 ?>
 <table>
