@@ -73,7 +73,7 @@ function selectExercisesForDay($pdo)
 
 }
 
-function exerciseForDay ($exerciseDay, $exerciseType, $exerciseName, $selectedExerciseNumber, $pdo)
+function exerciseForDay ($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo)
 {
     try {
     $statement = $pdo->prepare("INSERT INTO exercise_day (exerciseDay, exerciseType, exerciseName, selectedExerciseNumber)
@@ -82,7 +82,7 @@ function exerciseForDay ($exerciseDay, $exerciseType, $exerciseName, $selectedEx
     $statement->bindParam("exerciseDay", $exerciseDay);
     $statement->bindParam("exerciseType", $exerciseType);
     $statement->bindParam("exerciseName", $exerciseName);
-    $statement->bindParam("selectedExerciseNumber", $selectedExerciseNumber);
+    $statement->bindParam("selectedExerciseNumber", $exerciseOrderNumber);
     $statement->execute();
 
     $message = "Your exercise for the day has been set.";

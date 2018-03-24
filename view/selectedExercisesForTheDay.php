@@ -47,7 +47,7 @@ $day ="Monday";
 //            echo "<option value='1' $selected>1</option>";
 
             ?>
-            <option value="<?= $exerciseId ?>" name="<?= $exerciseName ?>" <?= $selected ?>><?= $exerciseName ?></option>
+            <option id="<?= $exerciseId ?>" name="<?= $exerciseName ?>" value="<?= $exerciseName ?>" <?= $selected ?>><?= $exerciseName ?></option>
             <?php
         }
         ?>
@@ -55,9 +55,9 @@ $day ="Monday";
 
     <!--     will need to do a loop here-->
     <input type="hidden" value="exerciseOrderOne" name="exerciseOrderNumber">
-    <input type="hidden" value="monday" name="exerciseDay ">
+    <input type="hidden" value="monday" name="exerciseDay">
     <!--     end loop here-->
 
-    <input type="hidden" value="legs" name="exerciseType ">
+    <input type="hidden" value="legs" name="exerciseType">
     <input type="submit" value="Submit" name="submitExerciseForDay">
 </form>
