@@ -58,9 +58,8 @@ function selectExercisesForDay($pdo)
 {
     // Selecting exercises from day
     try {
-        $statement = $pdo->prepare("SELECT exerciseName, exerciseImage 
+        $statement = $pdo->prepare("SELECT * 
                                     FROM exercise_select
-                                    ORDER BY exerciseName ASC
                                     ");
         $statement->execute();
         $exerciseList_Ar = $statement->fetchAll();

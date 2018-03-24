@@ -12,16 +12,7 @@ require_once (SITE_ROOT . "/./model/model.php");
 $databaseConnect = new DatabaseConnect();
 $pdo = $databaseConnect->getPdo();
 
-$exerciseName = "Squats";
 
-$getExercisesForDay = selectExercisesForDay($pdo);
-$day ="Monday";
-
-foreach($getExercisesForDay as $key => $value) {
-    echo "<pre><br>";
-    print_r($value);
-    echo "</pre><br>";
-}
 ?>
 
 <style>
@@ -33,46 +24,8 @@ foreach($getExercisesForDay as $key => $value) {
 <!--4 exercises per day-->
 
 
-
-<div>Select your exercises for <?= $day ?>:</div>
-<br>
-
-<form action="../controller/controller.php" method="post" name="selectExercisesForTheDayForm">
-    <label for="Exercise Select" style="display:inline-block">Select Exercise 1:</label>
-    <select name="exerciseSelect" id="">
-        <?php
-
-            $getExerciseName = "";
-
-            foreach($getExercisesForDay as $key => $value) {
-                $exerciseName = $value["exerciseName"];
-
-                echo "value var:<pre><br>";
-                print_r($value);
-                echo "</pre><br>";
-
-//                if ($key == )
-
-                ?>
-                <option value="<?= $exerciseName ?>[<?= $key?>]" name="<?= $exerciseName ?>"><?= $exerciseName ?></option>
-                <?php
-            }
-        ?>
-    </select>
-
-<!--     will need to do a loop here-->
-    <input type="hidden" value="exerciseOrderOne" name="exerciseOrderNumber">
-    <input type="hidden" value="monday" name="exerciseDay ">
-<!--     end loop here-->
-
-    <input type="hidden" value="legs" name="exerciseType ">
-    <input type="submit" value="Submit" name="submitExerciseForDay">
-</form>
-
-
-
 <?php
-
+$exerciseName = "Squats";
 
 $getExerciseResult =  getAllExercises($exerciseName, $pdo);
 //var_dump($getExerciseResult);
