@@ -23,15 +23,32 @@ echo "</pre><br>";
 $day ="Monday";
 $getExerciseName = "";
 
+
 ?>
 <div>Select your exercises for <?= $day ?>:</div>
 <br>
 
 <form action="../controller/controller.php" method="post" name="selectExercisesForTheDayForm">
+    <?php
+
+    $count = 1;
+    do {
+        ?>
+        <label for="Exercise Select" style="display:inline-block">
+            Select Exercise <?= $count ?>:
+        </label>
+        <?php
+    } while ($count > 6);
+
+
+
 
     foreach($getExercisesForDay as $value) {
 
-    <label for="Exercise Select" style="display:inline-block">Select Exercise 1:</label>
+
+
+    ?>
+
     <select name="exerciseSelect" id="">
         <?php
 
@@ -51,10 +68,17 @@ $getExerciseName = "";
             <option id="<?= $exerciseId ?>" name="<?= $exerciseName ?>" value="<?= $exerciseName ?>" <?= $selected ?>><?= $exerciseName ?></option>
 
     </select>
+    <?php
+
+
+    }
+
+    ?>
 
     <!--     will need to do a loop here-->
 <!--    This needs to be another drop down select option-->
-    <input type="hidden" value="exerciseOrderOne" name="exerciseOrderNumber">
+    <input type="hidden" value="exerciseOrder[x]" name="exerciseOrderNumber">
+<!--    <input type="hidden" value="exerciseOrderOne" name="exerciseOrderNumber">-->
     <!--     end loop here-->
 
     <!--  I could pass the day value through the url when user selects day to here  -->
