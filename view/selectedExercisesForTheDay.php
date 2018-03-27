@@ -21,19 +21,20 @@ print_r($getExercisesForDay);
 echo "</pre><br>";
 
 $day ="Monday";
+$getExerciseName = "";
 
 ?>
 <div>Select your exercises for <?= $day ?>:</div>
 <br>
 
 <form action="../controller/controller.php" method="post" name="selectExercisesForTheDayForm">
+
+    foreach($getExercisesForDay as $value) {
+
     <label for="Exercise Select" style="display:inline-block">Select Exercise 1:</label>
     <select name="exerciseSelect" id="">
         <?php
 
-        $getExerciseName = "";
-
-        foreach($getExercisesForDay as $value) {
             $exerciseName = $value["exerciseName"];
             $exerciseId = $value["id"];
             $exerciseNumberValue = $value["exerciseNumberValue"];
@@ -48,16 +49,21 @@ $day ="Monday";
 
             ?>
             <option id="<?= $exerciseId ?>" name="<?= $exerciseName ?>" value="<?= $exerciseName ?>" <?= $selected ?>><?= $exerciseName ?></option>
-            <?php
-        }
-        ?>
+
     </select>
 
     <!--     will need to do a loop here-->
+<!--    This needs to be another drop down select option-->
     <input type="hidden" value="exerciseOrderOne" name="exerciseOrderNumber">
-    <input type="hidden" value="monday" name="exerciseDay">
     <!--     end loop here-->
 
+    <!--  I could pass the day value through the url when user selects day to here  -->
+    <input type="hidden" value="monday" name="exerciseDay">
+
+    <!--     will need to do a loop here-->
+    <!--    This needs to be another drop down select option-->
     <input type="hidden" value="legs" name="exerciseType">
+
+<!--    Ill need to change the controller after all the above are completed or possibly make a new input ilter action in the controller-->
     <input type="submit" value="Submit" name="submitExerciseForDay">
 </form>
