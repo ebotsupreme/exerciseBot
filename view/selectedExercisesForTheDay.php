@@ -42,7 +42,7 @@ $getExerciseName = "";
         ?>
 
     <select name="exerciseSelect" id="">
-
+        <option value="">--Select--</option>
         <?php
         foreach($getExercisesForDay as $value) {
             $exerciseName = $value["exerciseName"];
@@ -58,6 +58,7 @@ $getExerciseName = "";
 //            echo "<option value='1' $selected>1</option>";
 
             ?>
+
             <option id="<?= $exerciseId ?>" name="<?= $exerciseName ?>" value="<?= $exerciseName ?>" <?= $selected ?>><?= $exerciseName ?></option>
             <?php
         }
@@ -75,7 +76,7 @@ $getExerciseName = "";
 
     <!--     will need to do a loop here-->
 <!--    This needs to be another drop down select option-->
-    <input type="hidden" value="exerciseOrder[x]" name="exerciseOrderNumber">
+    <input type="hidden" value="<?= $count ?>" name="exerciseOrderNumber">
 <!--    <input type="hidden" value="exerciseOrderOne" name="exerciseOrderNumber">-->
     <!--     end loop here-->
 
