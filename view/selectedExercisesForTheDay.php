@@ -38,20 +38,13 @@ $getExerciseName = "";
             Select Exercise <?= $count ?>:
         </label>
         <?php
-    } while ($count > 6);
-
-
-
-
-    foreach($getExercisesForDay as $value) {
-
-
-
-    ?>
+        $count ++;
+        ?>
 
     <select name="exerciseSelect" id="">
-        <?php
 
+        <?php
+        foreach($getExercisesForDay as $value) {
             $exerciseName = $value["exerciseName"];
             $exerciseId = $value["id"];
             $exerciseNumberValue = $value["exerciseNumberValue"];
@@ -66,14 +59,19 @@ $getExerciseName = "";
 
             ?>
             <option id="<?= $exerciseId ?>" name="<?= $exerciseName ?>" value="<?= $exerciseName ?>" <?= $selected ?>><?= $exerciseName ?></option>
-
+            <?php
+        }
+        ?>
     </select>
+
     <?php
 
-
-    }
+    } while ($count <= 5);
 
     ?>
+
+
+
 
     <!--     will need to do a loop here-->
 <!--    This needs to be another drop down select option-->
