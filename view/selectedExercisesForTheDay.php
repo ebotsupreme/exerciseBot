@@ -34,12 +34,24 @@ $getExerciseName = "";
     $count = 1;
     do {
         ?>
+
+
+        <!--     will need to do a loop here-->
+        <!--    This needs to be another drop down select option-->
+        <input type="hidden" value="legs" name="exerciseType">
+
+
         <label for="Exercise Select" style="display:inline-block">
             Select Exercise <?= $count ?>:
         </label>
         <?php
         $count ++;
         ?>
+
+
+        <select name="" id="populateExercises">
+            <option value=""></option>
+        </select>
 
     <select name="exerciseSelect" id="">
         <option value="">--Select--</option>
@@ -64,29 +76,43 @@ $getExerciseName = "";
         }
         ?>
     </select>
-
+    <input type="hidden" value="<?= $count ?>" name="exerciseOrderNumber">
     <?php
 
     } while ($count <= 5);
 
     ?>
 
-
-
-
-    <!--     will need to do a loop here-->
-<!--    This needs to be another drop down select option-->
-    <input type="hidden" value="<?= $count ?>" name="exerciseOrderNumber">
-<!--    <input type="hidden" value="exerciseOrderOne" name="exerciseOrderNumber">-->
-    <!--     end loop here-->
-
     <!--  I could pass the day value through the url when user selects day to here  -->
-    <input type="hidden" value="monday" name="exerciseDay">
+    <input type="hidden" value="<?= $day ?>" name="exerciseDay">
 
-    <!--     will need to do a loop here-->
-    <!--    This needs to be another drop down select option-->
-    <input type="hidden" value="legs" name="exerciseType">
 
-<!--    Ill need to change the controller after all the above are completed or possibly make a new input ilter action in the controller-->
+<!--    Ill need to change the controller after all the above are completed or possibly make a new input filter action in the controller-->
     <input type="submit" value="Submit" name="submitExerciseForDay">
 </form>
+
+<script>
+    // Ajax call to show exercise type selection.
+    // This will populate the exercise options to choose from.
+    function showExerciseType(str)
+    {
+        if (str == "") {
+            document.getElementById("populateExercises").innerHTML = "";
+            return;
+        } else {
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange = function ()
+            {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("populateExercises").innerHTML = this.responseText;
+                }
+            };
+            xmlhttp.open("GET", "getExerciseType.php?q="+str,true);
+            xmlhttp.send();
+        }
+    }
+</script>
