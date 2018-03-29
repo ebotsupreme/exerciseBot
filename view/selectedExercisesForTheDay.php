@@ -38,17 +38,25 @@ $getExerciseName = "";
 
         <!--     will need to do a loop here-->
         <!--    This needs to be another drop down select option-->
-        <input type="hidden" value="legs" name="exerciseType">
-
+<!--        <input type="hidden" value="legs" name="exerciseType">-->
+        <select name="exerciseType" onchange="showExerciseType(this.value)">
+            <option value="">--Select exercise type--</option>
+            <option value="legs">legs</option>
+            <option value="chest">chest</option>
+            <option value="arms">arms</option>
+            <option value="shoulder">shoulder</option>
+            <option value="back">back</option>
+        </select>
 
         <label for="Exercise Select" style="display:inline-block">
             Select Exercise <?= $count ?>:
         </label>
         <?php
         $count ++;
+
+        print_r($exerciseTypeResultAr);
         ?>
-
-
+<!--        Temporary storage for types-->
         <select name="" id="populateExercises">
             <option value=""></option>
         </select>
@@ -111,7 +119,7 @@ $getExerciseName = "";
                     document.getElementById("populateExercises").innerHTML = this.responseText;
                 }
             };
-            xmlhttp.open("GET", "getExerciseType.php?q="+str,true);
+            xmlhttp.open("GET", "../model/model.php?q="+str,true);
             xmlhttp.send();
         }
     }
