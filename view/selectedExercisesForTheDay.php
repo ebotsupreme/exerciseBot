@@ -16,50 +16,58 @@ $pdo = $databaseConnect->getPdo();
 
 $getExercisesForDay = selectExercisesForDay($pdo);
 
-echo "getExercisesForDay :<pre><br>";
-print_r($getExercisesForDay);
-echo "</pre><br>";
+//echo "getExercisesForDay :<pre><br>";
+//print_r($getExercisesForDay);
+//echo "</pre><br>";
 
 $day ="Monday";
 $getExerciseName = "";
 
+//print_r($exerciseTypeResultAr);
 
 ?>
+<script>
+//   var siteRoot = <?//= SITE_ROOT ?>//;
+</script>
 <div>Select your exercises for <?= $day ?>:</div>
 <br>
 
 <form action="../controller/controller.php" method="post" name="selectExercisesForTheDayForm">
+
+
+    <!--     will need to do a loop here-->
+    <!--    This needs to be another drop down select option-->
+    <!--        <input type="hidden" value="legs" name="exerciseType">-->
+    <select name="exerciseType" onchange="showExerciseType(this.value)">
+        <option value="" selected disabled hidden>--Select exercise type--</option>
+        <option value="legs">legs</option>
+        <option value="2">chest</option>
+        <option value="3">arms</option>
+        <option value="4">shoulder</option>
+        <option value="5">back</option>
+    </select>
+
+    <!--        Temporary storage for types-->
+    <select name="" id="populateExercises">
+        <option value=""></option>
+    </select>
     <?php
+
 
     $count = 1;
     do {
         ?>
 
-
-        <!--     will need to do a loop here-->
-        <!--    This needs to be another drop down select option-->
-<!--        <input type="hidden" value="legs" name="exerciseType">-->
-        <select name="exerciseType" onchange="showExerciseType(this.value)">
-            <option value="">--Select exercise type--</option>
-            <option value="legs">legs</option>
-            <option value="chest">chest</option>
-            <option value="arms">arms</option>
-            <option value="shoulder">shoulder</option>
-            <option value="back">back</option>
-        </select>
-
         <label for="Exercise Select" style="display:inline-block">
             Select Exercise <?= $count ?>:
         </label>
+
         <?php
         $count ++;
 
-        print_r($exerciseTypeResultAr);
+
         ?>
-<!--        Temporary storage for types-->
-        <select name="" id="populateExercises">
-            <option value=""></option>
-        </select>
+
 
     <select name="exerciseSelect" id="">
         <option value="">--Select--</option>
@@ -103,7 +111,8 @@ $getExerciseName = "";
     // Ajax call to show exercise type selection.
     // This will populate the exercise options to choose from.
     function showExerciseType(str)
-    {
+    {console.log("/./controller/typeController.php?q="+str);
+        var xmlhttp = '';
         if (str == "") {
             document.getElementById("populateExercises").innerHTML = "";
             return;
@@ -119,7 +128,8 @@ $getExerciseName = "";
                     document.getElementById("populateExercises").innerHTML = this.responseText;
                 }
             };
-            xmlhttp.open("GET", "../model/model.php?q="+str,true);
+            console.log( xmlhttp.open("GET", "./../controller/typeController.php?q="+str,true));
+            xmlhttp.open("GET", "./../controller/typeController.php?q="+str,true);
             xmlhttp.send();
         }
     }

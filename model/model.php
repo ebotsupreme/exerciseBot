@@ -5,9 +5,9 @@ ini_set('display_startup_errors', 1);
 
 require_once(__DIR__ . "/../config.php");
 require_once(SITE_ROOT . "./model/db_connection.php");
+require_once(SITE_ROOT . "./view/selectedExercisesForTheDay.php");
 
 $dbError = "";
-$q = htmlspecialchars(trim($_GET['q']));
 
 function getAllExercises($exerciseName, $pdo)
 {
@@ -74,25 +74,6 @@ function selectExercisesForDay($pdo)
 
 }
 
-function selectExerciseType($pdo, $q)
-{
-    // Selecting exercise type
-    try {
-        $statement = $pdo->prepare("SELECT *
-                                    FROM exercise_select
-                                    WHERE exerciseType = :exerciseType;
-                                  ");
-        $statement->bindParam("exerciseType", $q);
-        $statement->execute();
-        $exerciseTypeResultAr = $statement->fetchAll();
-
-        return $exerciseTypeResultAr;
-
-    } catch (PDOException $e) {
-        $dbError = $e->getMessage();
-        echo 'Caught exception' . $dbError, "\n";
-    }
-}
 
 function exerciseForDay ($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo)
 {
