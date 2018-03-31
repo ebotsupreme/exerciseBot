@@ -16,10 +16,10 @@ $pdo = $databaseConnect->getPdo();
 
 //var_dump(intval($_GET['q']));
 //$q = intval($_GET['q']);
-print_r($_GET);
+//print_r($_GET);
 //echo 'a'.$q;
 $query = $_GET['query'];
-echo $query;
+//echo $query;
 
 
 function selectExerciseType($pdo, $query)
@@ -34,10 +34,35 @@ function selectExerciseType($pdo, $query)
         $statement->execute();
         $exerciseTypeResultAr = $statement->fetchAll();
 
-        print_r($exerciseTypeResultAr);
+//        echo '<pre><br>';
+//        print_r($exerciseTypeResultAr);
+//        echo '</pre><br>';
 
-        return $exerciseTypeResultAr;
+        foreach ($exerciseTypeResultAr as $exercise) {
+//            echo $exercise['exerciseName'];
+//            return $exercise['exerciseName'];
+//            echo '<pre><br>';
+//            print_r($exercise);
+//            echo '</pre><br>';
+            echo $exercise['exerciseName'];
 
+            if ($_GET["query"] == $exercise['exerciseName']) {
+                return $exercise['exerciseName'];
+            }
+
+        }
+//        return $exerciseTypeResultAr;
+
+//        echo "<table>
+//                <tr>
+//                <th>Exercise Name</th>
+//            ";
+//        while($row = $exerciseTypeResultAr) {
+//            echo "<tr>";
+//            echo "<td>" . $row['exerciseName'] . "</td>";
+//            echo "</tr>";
+//        }
+//        echo "</table>";
 
 
     } catch (PDOException $e) {

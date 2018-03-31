@@ -26,6 +26,8 @@ $getExerciseName = "";
 
 //print_r($exerciseTypeResultAr);
 
+
+
 ?>
 <script>
 //   var siteRoot = <?//= SITE_ROOT ?>//;
@@ -53,7 +55,9 @@ $getExerciseName = "";
 <!--        <option value="" selected>--Select exercise--</option>-->
 <!--        <option value=""></option>-->
 <!--    </select>-->
-    <div id="txtHint"><b><?= var_dump($exerciseTypeResultAr)?></b></div>
+    <div id="txtHint">
+
+    </div>
     <br>
     <br>
     <br>
@@ -90,13 +94,15 @@ $getExerciseName = "";
             {
                 if (this.readyState == 4 && this.status == 200) {
 
+                    console.log(this.responseText);
+//                    throw new Error("my error message");
+
                     document.getElementById("txtHint").innerHTML = this.responseText;
 
                 }
             };
-            console.log("../controller/typeController.php?q="+str);
-            xmlhttp.open("GET", "../controller/typeController.php?q="+str,true);
-            console.log(xmlhttp.open("GET", "../controller/typeController.php?query="+str,true));
+
+            xmlhttp.open("GET", "../controller/typeController.php?query="+str+"&format=fragment",true);
             xmlhttp.send();
         }
     }
