@@ -29,6 +29,8 @@ $getExerciseName = "";
 
 
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script>
 //   var siteRoot = <?//= SITE_ROOT ?>//;
 </script>
@@ -77,33 +79,60 @@ $getExerciseName = "";
     // Ajax call to show exercise type selection.
     // This will populate the exercise options to choose from.
     function showExerciseType(str) {
-        var xmlhttp = '';
-        if (str == "") {
+//        var xmlhttp = '';
+//        if (str == "") {
+//            document.getElementById("txtHint").innerHTML = "";
+//            return;
+//        } else {
+//
+//            if (window.XMLHttpRequest) {
+//                xmlhttp = new XMLHttpRequest();
+//
+//            } else {
+//                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+//
+//            }
+//            xmlhttp.onreadystatechange = function ()
+//            {
+//                if (this.readyState == 4 && this.status == 200) {
+//
+//                    console.log(this.responseText);
+////                    throw new Error("my error message");
+//
+//                    document.getElementById("txtHint").innerHTML = this.responseText;
+//
+//                }
+//            };
+//
+//            xmlhttp.open("GET", "../controller/typeController.php?query="+str+"&format=fragment",true);
+//            xmlhttp.send();
+//        }
+
+        if (str === "") {
             document.getElementById("txtHint").innerHTML = "";
-            return;
+            return true;
         } else {
+            var display = document.getElementById("txtHint");
+            var xmlhttp = new XMLHttpRequest();
 
-            if (window.XMLHttpRequest) {
-                xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "../controller/typeController.php?query=" + str, true);
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xmlhttp.send();
 
-            } else {
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-
-            }
             xmlhttp.onreadystatechange = function ()
             {
-                if (this.readyState == 4 && this.status == 200) {
-
-                    console.log(this.responseText);
-//                    throw new Error("my error message");
+                if (this.readyState === 4 && this.status === 200) {
+//                    var myHtml = this.responseText;
+//                    console.log(this.responseText);
+//                    var myContent = myHtml.select("div#txtHint");
+//                    alert(myContent);
 
                     document.getElementById("txtHint").innerHTML = this.responseText;
 
+                } else {
+                    display.innerHTML = "Something went wrong...";
                 }
             };
-
-            xmlhttp.open("GET", "../controller/typeController.php?query="+str+"&format=fragment",true);
-            xmlhttp.send();
         }
     }
 </script>

@@ -5,6 +5,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 require_once (__DIR__ . "/../config.php");
+require_once(SITE_ROOT . "/./includes/header.php");
 //require_once (SITE_ROOT . "/./view/monday.php");
 require_once (SITE_ROOT . "/./model/db_connection.php");
 require_once (SITE_ROOT . "/./model/model.php");
@@ -34,10 +35,6 @@ function selectExerciseType($pdo, $query)
         $statement->execute();
         $exerciseTypeResultAr = $statement->fetchAll();
 
-//        echo '<pre><br>';
-//        print_r($exerciseTypeResultAr);
-//        echo '</pre><br>';
-
         foreach ($exerciseTypeResultAr as $exercise) {
 //            echo $exercise['exerciseName'];
 //            return $exercise['exerciseName'];
@@ -47,10 +44,11 @@ function selectExerciseType($pdo, $query)
             echo $exercise['exerciseName'];
 
             if ($_GET["query"] == $exercise['exerciseName']) {
-                return $exercise['exerciseName'];
+                echo $exercise['exerciseName'];
             }
 
         }
+        return true;
 //        return $exerciseTypeResultAr;
 
 //        echo "<table>
