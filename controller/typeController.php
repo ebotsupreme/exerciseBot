@@ -33,14 +33,36 @@ function selectExerciseType($pdo, $query)
         foreach ($exerciseTypeResultAr as $exercise) {
 //            echo $exercise['exerciseName'];
 //            return $exercise['exerciseName'];
-//            echo '<pre><br>';
-//            print_r($exercise);
-//            echo '</pre><br>';
+            echo '<pre><br>';
+            print_r($exercise);
+            echo '</pre><br>';
             echo $exercise['exerciseName'];
 
-            if ($_GET["query"] == $exercise['exerciseName']) {
-                echo $exercise['exerciseName'];
-            }
+            // continue here tomorrow. check exercie array
+
+//            foreach($getExercisesForDay as $value) {
+//                $exerciseName = $value["exerciseName"];
+//                $exerciseId = $value["id"];
+//                $exerciseNumberValue = $value["exerciseNumberValue"];
+//
+//
+//                echo "value var:<pre><br>";
+//                print_r($value);
+//                echo "</pre><br>";
+//
+//                $selected = $exerciseId == $exerciseNumberValue? 'selected' : '';
+//    //            echo "<option value='1' $selected>1</option>";
+//
+//                ?>
+<!--    -->
+<!--                <option id="--><?//= $exerciseId ?><!--" name="--><?//= $exerciseName ?><!--" value="--><?//= $exerciseName ?><!--" --><?//= $selected ?><!-->--><?//= $exerciseName ?><!--</option>-->
+<!--                --><?php
+//            }
+
+
+//            if ($_GET["query"] == $exercise['exerciseName']) {
+//                echo $exercise['exerciseName'];
+//            }
 
         }
 

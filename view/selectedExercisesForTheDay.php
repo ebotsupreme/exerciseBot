@@ -32,6 +32,57 @@ $getExerciseName = "";
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
 
 <script>
+//   var siteRoot = <?//= SITE_ROOT ?>//;
+</script>
+
+<div>Select your exercises for <?= $day ?>:</div>
+<br>
+
+<form action="../controller/controller.php" method="post" name="selectExercisesForTheDayForm">
+
+
+    <!--     will need to do a loop here-->
+    <!--    This needs to be another drop down select option-->
+    <!--        <input type="hidden" value="legs" name="exerciseType">-->
+    <select name="exerciseType" onchange="showExerciseType(this.value)">
+        <option value="" selected >--Select exercise type--</option>
+        <option value="legs">legs</option>
+        <option value="chest">chest</option>
+        <option value="arms">arms</option>
+        <option value="shoulder">shoulder</option>
+        <option value="back">back</option>
+    </select>
+
+    <!--        Temporary storage for types-->
+<!--    <select name="" id="populateExercises">-->
+<!--        <option value="" selected>--Select exercise--</option>-->
+<!--        <option value=""></option>-->
+<!--    </select>-->
+
+    <select name="exerciseSelect" id="txtHint">
+        <option value="">--Select--</option>
+
+    </select>
+
+<!--    <div id="txtHint">-->
+<!---->
+<!--    </div>-->
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <!--  I could pass the day value through the url when user selects day to here  -->
+    <input type="hidden" value="<?= $day ?>" name="exerciseDay">
+
+
+<!--    Ill need to change the controller after all the above are completed or possibly make a new input filter action in the controller-->
+    <input type="submit" value="Submit" name="submitExerciseForDay">
+</form>
+
+<script>
     // Ajax call to show exercise type selection.
     // This will populate the exercise options to choose from.
     function showExerciseType(str) {
@@ -78,11 +129,6 @@ $getExerciseName = "";
             xmlhttp.onreadystatechange = function ()
             {
                 if (this.readyState === 4 && this.status === 200) {
-//                    var myHtml = this.responseText;
-//                    console.log(this.responseText);
-//                    var myContent = myHtml.select("div#txtHint");
-//                    alert(myContent);
-
 
                     document.getElementById("txtHint").innerHTML = this.responseText;
 
@@ -93,48 +139,3 @@ $getExerciseName = "";
         }
     }
 </script>
-
-<script>
-//   var siteRoot = <?//= SITE_ROOT ?>//;
-</script>
-<div>Select your exercises for <?= $day ?>:</div>
-<br>
-
-<form action="../controller/controller.php" method="post" name="selectExercisesForTheDayForm">
-
-
-    <!--     will need to do a loop here-->
-    <!--    This needs to be another drop down select option-->
-    <!--        <input type="hidden" value="legs" name="exerciseType">-->
-    <select name="exerciseType" onchange="showExerciseType(this.value)">
-        <option value="" selected >--Select exercise type--</option>
-        <option value="legs">legs</option>
-        <option value="chest">chest</option>
-        <option value="arms">arms</option>
-        <option value="shoulder">shoulder</option>
-        <option value="back">back</option>
-    </select>
-
-    <!--        Temporary storage for types-->
-<!--    <select name="" id="populateExercises">-->
-<!--        <option value="" selected>--Select exercise--</option>-->
-<!--        <option value=""></option>-->
-<!--    </select>-->
-    <div id="txtHint">
-
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
-
-    <!--  I could pass the day value through the url when user selects day to here  -->
-    <input type="hidden" value="<?= $day ?>" name="exerciseDay">
-
-
-<!--    Ill need to change the controller after all the above are completed or possibly make a new input filter action in the controller-->
-    <input type="submit" value="Submit" name="submitExerciseForDay">
-</form>
-
