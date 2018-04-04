@@ -22,8 +22,6 @@ class DatabaseConnect {
         $this->db = "exercisor";
         try {
             $this->myPDO = new PDO("mysql:host=$this->host;dbname=$this->db", $this->user, $this->pass);
-
-            echo "Connected<p>";
         } catch (PDOException $e) {
             echo "Unable to connect: " . $e->getMessage() . "<p>";
         }
