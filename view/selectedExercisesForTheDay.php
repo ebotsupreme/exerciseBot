@@ -29,7 +29,6 @@ $getExerciseName = "";
 
 
 ?>
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
 
 <script>
 //   var siteRoot = <?//= SITE_ROOT ?>//;
@@ -41,10 +40,8 @@ $getExerciseName = "";
 <form action="../controller/controller.php" method="post" name="selectExercisesForTheDayForm">
 
 
-    <!--     will need to do a loop here-->
-    <!--    This needs to be another drop down select option-->
-    <!--        <input type="hidden" value="legs" name="exerciseType">-->
-    <select name="exerciseType" onchange="showExerciseType(this.value)">
+
+    <select name="exerciseType" onchange="showExerciseType(this.value)" style="display:block;">
         <option value="" selected >--Select exercise type--</option>
         <option value="legs">legs</option>
         <option value="chest">chest</option>
@@ -53,26 +50,35 @@ $getExerciseName = "";
         <option value="back">back</option>
     </select>
 
-    <!--        Temporary storage for types-->
-<!--    <select name="" id="populateExercises">-->
-<!--        <option value="" selected>--Select exercise--</option>-->
-<!--        <option value=""></option>-->
-<!--    </select>-->
+    <br>
 
-    <select name="exerciseSelect" id="txtHint">
-        <option value="">--Select--</option>
+    <?php
+    $count = 1;
+    do {
+    ?>
+    <script>var count = <?= $count ?></script>
 
+    <label for="Exercise Select" style="display:inline-block">
+        Select Exercise <?= $count ?>:
+    </label>
+
+    <?php
+    $count ++;
+    ?>
+
+    <select name="exerciseSelect" id="txtHint_<?= $count ?>">
+        <option value="" selected="selected">--Select--</option>
     </select>
 
-<!--    <div id="txtHint">-->
-<!---->
-<!--    </div>-->
-    <br>
-    <br>
-    <br>
     <br>
     <br>
 
+    <input type="hidden" value="<?= $count ?>" name="exerciseOrderNumber">
+    <?php
+
+    } while ($count <= 5);
+
+    ?>
 
     <!--  I could pass the day value through the url when user selects day to here  -->
     <input type="hidden" value="<?= $day ?>" name="exerciseDay">
@@ -85,43 +91,15 @@ $getExerciseName = "";
 <script>
     // Ajax call to show exercise type selection.
     // This will populate the exercise options to choose from.
-    function showExerciseType(str) {
-//        var xmlhttp = '';
-//        if (str == "") {
-//            document.getElementById("txtHint").innerHTML = "";
-//            return;
-//        } else {
-//
-//            if (window.XMLHttpRequest) {
-//                xmlhttp = new XMLHttpRequest();
-//
-//            } else {
-//                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-//
-//            }
-//            xmlhttp.onreadystatechange = function ()
-//            {
-//                if (this.readyState == 4 && this.status == 200) {
-//
-//                    console.log(this.responseText);
-////                    throw new Error("my error message");
-//
-//                    document.getElementById("txtHint").innerHTML = this.responseText;
-//
-//                }
-//            };
-//
-//            xmlhttp.open("GET", "../controller/typeController.php?query="+str+"&format=fragment",true);
-//            xmlhttp.send();
-//        }
-
+    function showExerciseType(str)
+    {
         if (str === "") {
             document.getElementById("txtHint").innerHTML = "";
             return true;
         } else {
             var display = document.getElementById("txtHint");
             var xmlhttp = new XMLHttpRequest();
-
+            console.log(count);
             xmlhttp.open("GET", "../controller/typeController.php?query=" + str, true);
             xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xmlhttp.send();
@@ -129,8 +107,10 @@ $getExerciseName = "";
             xmlhttp.onreadystatechange = function ()
             {
                 if (this.readyState === 4 && this.status === 200) {
-
-                    document.getElementById("txtHint").innerHTML = this.responseText;
+                    for(var i = 0; i < count.length; i++) {
+                        document.getElementById("txtHint_" + i).innerHTML = this.responseText;
+                        // adding count to txthint and trying to loop but not working
+                    }
 
                 } else {
                     display.innerHTML = "Something went wrong...";

@@ -30,56 +30,22 @@ function selectExerciseType($pdo, $query)
         $statement->execute();
         $exerciseTypeResultAr = $statement->fetchAll();
 
-        foreach ($exerciseTypeResultAr as $exercise) {
-//            echo $exercise['exerciseName'];
-//            return $exercise['exerciseName'];
-            echo '<pre><br>';
-            print_r($exercise);
-            echo '</pre><br>';
-            echo $exercise['exerciseName'];
+        foreach ($exerciseTypeResultAr as $value) {
 
-            // continue here tomorrow. check exercie array
+            $exerciseName = $value["exerciseName"];
+            $exerciseId = $value["id"];
+            $exerciseNumberValue = $value["exerciseNumberValue"];
 
-//            foreach($getExercisesForDay as $value) {
-//                $exerciseName = $value["exerciseName"];
-//                $exerciseId = $value["id"];
-//                $exerciseNumberValue = $value["exerciseNumberValue"];
-//
-//
-//                echo "value var:<pre><br>";
-//                print_r($value);
-//                echo "</pre><br>";
-//
-//                $selected = $exerciseId == $exerciseNumberValue? 'selected' : '';
-//    //            echo "<option value='1' $selected>1</option>";
-//
-//                ?>
-<!--    -->
-<!--                <option id="--><?//= $exerciseId ?><!--" name="--><?//= $exerciseName ?><!--" value="--><?//= $exerciseName ?><!--" --><?//= $selected ?><!-->--><?//= $exerciseName ?><!--</option>-->
-<!--                --><?php
-//            }
+            $selected = $exerciseId == $exerciseNumberValue? 'selected' : '';
 
 
-//            if ($_GET["query"] == $exercise['exerciseName']) {
-//                echo $exercise['exerciseName'];
-//            }
+            ?>
 
+            <option id="<?= $exerciseId ?>" name="<?= $exerciseName ?>" value="<?= $exerciseName ?>" <?= $selected ?>><?= $exerciseName ?></option>
+            <?php
         }
 
         return true;
-//        return $exerciseTypeResultAr;
-
-//        echo "<table>
-//                <tr>
-//                <th>Exercise Name</th>
-//            ";
-//        while($row = $exerciseTypeResultAr) {
-//            echo "<tr>";
-//            echo "<td>" . $row['exerciseName'] . "</td>";
-//            echo "</tr>";
-//        }
-//        echo "</table>";
-
 
     } catch (PDOException $e) {
         $dbError = $e->getMessage();
