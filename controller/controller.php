@@ -12,7 +12,13 @@ require_once (SITE_ROOT . "/./model/model.php");
 // Call the PDO class
 $databaseConnect = new DatabaseConnect();
 $pdo = $databaseConnect->getPdo();
-
+//echo '<pre>Post:<br>';
+//var_dump($_POST);
+//echo '</pre><br>';
+//echo '<pre>Request:<br>';
+//var_dump($_REQUEST);
+//echo '</pre><br>';
+//die('ded');
 if (null !== (filter_input(INPUT_POST,"submitExerciseDay"))) {
 
     $exerciseName   = $_POST["squats"];
@@ -33,7 +39,13 @@ if (null !== (filter_input(INPUT_POST,"submitExerciseDay"))) {
 
 
 if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
-    $exerciseName = $_POST["exerciseSelect"];
+    // with the post variables now i need to set up the rest below
+    echo '<pre>Post:<br>';
+    var_dump($_POST);
+    echo '</pre><br>';
+
+
+    $exerciseName1 = $_POST["exerciseSelect1"];
     echo 'exerciseName is:'.$exerciseName.'<br>';
     $exerciseOrderNumber = $_POST["exerciseOrderNumber"];
     echo 'exerciseOrderNumber is:'.$exerciseOrderNumber.'<br>';
