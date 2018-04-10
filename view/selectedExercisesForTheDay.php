@@ -62,10 +62,6 @@ $getExerciseName = "";
         Select Exercise <?= $count ?>:
     </label>
 
-    <?php
-    $count ++;
-    ?>
-
     <select name="exerciseSelect" id="txtHint_<?= $count ?>">
         <option value="" selected="selected">--Select--</option>
     </select>
@@ -75,6 +71,7 @@ $getExerciseName = "";
 
     <input type="hidden" value="<?= $count ?>" name="exerciseOrderNumber">
     <?php
+    $count ++;
 
     } while ($count <= 5);
 
@@ -94,12 +91,15 @@ $getExerciseName = "";
     function showExerciseType(str)
     {
         if (str === "") {
-            document.getElementById("txtHint").innerHTML = "";
+            document.getElementById("txtHint_1").innerHTML = "";
+            document.getElementById("txtHint_2").innerHTML = "";
+            document.getElementById("txtHint_3").innerHTML = "";
+            document.getElementById("txtHint_4").innerHTML = "";
+            document.getElementById("txtHint_5").innerHTML = "";
             return true;
         } else {
-            var display = document.getElementById("txtHint");
+//            var display = document.getElementById("txtHint");
             var xmlhttp = new XMLHttpRequest();
-            console.log(count);
             xmlhttp.open("GET", "../controller/typeController.php?query=" + str, true);
             xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xmlhttp.send();
@@ -107,13 +107,21 @@ $getExerciseName = "";
             xmlhttp.onreadystatechange = function ()
             {
                 if (this.readyState === 4 && this.status === 200) {
-                    for(var i = 0; i < count.length; i++) {
-                        document.getElementById("txtHint_" + i).innerHTML = this.responseText;
+
+                        document.getElementById("txtHint_1").innerHTML = this.responseText;
+                        document.getElementById("txtHint_2").innerHTML = this.responseText;
+                        document.getElementById("txtHint_3").innerHTML = this.responseText;
+                        document.getElementById("txtHint_4").innerHTML = this.responseText;
+                        document.getElementById("txtHint_5").innerHTML = this.responseText;
                         // adding count to txthint and trying to loop but not working
-                    }
+
 
                 } else {
-                    display.innerHTML = "Something went wrong...";
+                    document.getElementById("txtHint_1").innerHTML = "Something went wrong...";
+                    document.getElementById("txtHint_2").innerHTML = "Something went wrong...";
+                    document.getElementById("txtHint_3").innerHTML = "Something went wrong...";
+                    document.getElementById("txtHint_4").innerHTML = "Something went wrong...";
+                    document.getElementById("txtHint_5").innerHTML = "Something went wrong...";
                 }
             };
         }

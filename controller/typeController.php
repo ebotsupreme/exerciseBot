@@ -30,6 +30,9 @@ function selectExerciseType($pdo, $query)
         $statement->execute();
         $exerciseTypeResultAr = $statement->fetchAll();
 
+        ?>
+        <option id="none" name="none" value="none">No Exercise</option>
+        <?php
         foreach ($exerciseTypeResultAr as $value) {
 
             $exerciseName = $value["exerciseName"];
