@@ -31,7 +31,7 @@ function selectExerciseType($pdo, $query)
         $exerciseTypeResultAr = $statement->fetchAll();
 
         ?>
-        <option id="none" name="none" value="none">No Exercise</option>
+        <option id="none" name="none" value="none" selected="selected">No Exercise</option>
         <?php
         foreach ($exerciseTypeResultAr as $value) {
 
@@ -44,7 +44,7 @@ function selectExerciseType($pdo, $query)
 
             ?>
 
-            <option id="<?= $exerciseId ?>" name="<?= $exerciseName ?>" value="<?= $exerciseName ?>" <?= $selected ?>><?= $exerciseName ?></option>
+            <option id="<?= $exerciseId ?>" name="<?= $exerciseName ?>" value="<?= $exerciseName ?>"><?= $exerciseName ?></option>
             <?php
         }
 

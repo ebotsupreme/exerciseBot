@@ -69,7 +69,7 @@ $getExerciseName = "";
     <br>
     <br>
 
-    <input type="hidden" value="<?= $count ?>" name="exerciseOrderNumber">
+    <input type="hidden" value="<?= $count ?>" name="exerciseOrderNumber<?= $count ?>">
     <?php
     $count ++;
 
