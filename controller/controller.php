@@ -43,9 +43,11 @@ if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
     echo '<pre>Post:<br>';
     var_dump($_POST);
     echo '</pre><br>';
-
-    foreach()
-
+?>
+    <style>
+        #selectExerciseForDayContainer {display:none;}
+    </style>
+<?php
     $exerciseName1 = $_POST["exerciseSelect1"];
     echo 'exerciseName is:'.$exerciseName.'<br>';
     $exerciseOrderNumber = $_POST["exerciseOrderNumber"];

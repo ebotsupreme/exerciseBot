@@ -34,56 +34,63 @@ $getExerciseName = "";
 //   var siteRoot = <?//= SITE_ROOT ?>//;
 </script>
 
-<div>Select your exercises for <?= $day ?>:</div>
-<br>
+<div id="selectExerciseForDayContainer" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div>Select your exercises for <?= $day ?>:</div>
+            <br>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form action="../controller/controller.php" method="post" name="selectExercisesForTheDayForm" id="selectExercisesForTheDayForm">
 
-<form action="../controller/controller.php" method="post" name="selectExercisesForTheDayForm">
+                <select name="exerciseType" onchange="showExerciseType(this.value)" style="display:block;">
+                    <option value="" selected >--Select exercise type--</option>
+                    <option value="legs">legs</option>
+                    <option value="chest">chest</option>
+                    <option value="arms">arms</option>
+                    <option value="shoulder">shoulder</option>
+                    <option value="back">back</option>
+                </select>
+
+                <br>
+
+                <?php
+                $count = 1;
+                do {
+                    ?>
+                    <script>var count = <?= $count ?></script>
+
+                    <label for="Exercise Select" style="display:inline-block">
+                        Select Exercise <?= $count ?>:
+                    </label>
+
+                    <select name="exerciseSelect<?= $count ?>" id="txtHint_<?= $count ?>">
+                        <option value="" selected="selected">--Select--</option>
+                    </select>
+
+                    <br>
+                    <br>
+
+                    <input type="hidden" value="<?= $count ?>" name="exerciseOrderNumber<?= $count ?>">
+                    <?php
+                    $count ++;
+
+                } while ($count <= 5);
+
+                ?>
+
+                <!--  I could pass the day value through the url when user selects day to here  -->
+                <input type="hidden" value="<?= $day ?>" name="exerciseDay">
 
 
-
-    <select name="exerciseType" onchange="showExerciseType(this.value)" style="display:block;">
-        <option value="" selected >--Select exercise type--</option>
-        <option value="legs">legs</option>
-        <option value="chest">chest</option>
-        <option value="arms">arms</option>
-        <option value="shoulder">shoulder</option>
-        <option value="back">back</option>
-    </select>
-
-    <br>
-
-    <?php
-    $count = 1;
-    do {
-    ?>
-    <script>var count = <?= $count ?></script>
-
-    <label for="Exercise Select" style="display:inline-block">
-        Select Exercise <?= $count ?>:
-    </label>
-
-    <select name="exerciseSelect<?= $count ?>" id="txtHint_<?= $count ?>">
-        <option value="" selected="selected">--Select--</option>
-    </select>
-
-    <br>
-    <br>
-
-    <input type="hidden" value="<?= $count ?>" name="exerciseOrderNumber<?= $count ?>">
-    <?php
-    $count ++;
-
-    } while ($count <= 5);
-
-    ?>
-
-    <!--  I could pass the day value through the url when user selects day to here  -->
-    <input type="hidden" value="<?= $day ?>" name="exerciseDay">
-
-
-<!--    Ill need to change the controller after all the above are completed or possibly make a new input filter action in the controller-->
-    <input type="submit" value="Submit" name="submitExerciseForDay">
-</form>
+                <!--    Ill need to change the controller after all the above are completed or possibly make a new input filter action in the controller-->
+                <input type="submit" value="Submit" name="submitExerciseForDay" id="submitExerciseForDay">
+            </form>
+        </div>
+    </div>
+</div>
 
 <script>
     // Ajax call to show exercise type selection.
@@ -126,4 +133,5 @@ $getExerciseName = "";
             };
         }
     }
+    
 </script>
