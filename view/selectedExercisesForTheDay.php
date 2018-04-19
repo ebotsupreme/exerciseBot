@@ -66,14 +66,14 @@ $getExerciseName = "";
                         Select Exercise <?= $count ?>:
                     </label>
 
-                    <select name="exerciseSelect<?= $count ?>" id="txtHint_<?= $count ?>">
+                    <select name="exerciseSelect[]" id="txtHint_<?= $count ?>">
                         <option value="" selected="selected">--Select--</option>
                     </select>
 
                     <br>
                     <br>
 
-                    <input type="hidden" value="<?= $count ?>" name="exerciseOrderNumber<?= $count ?>">
+                    <input type="hidden" value="<?= $count ?>" name="exerciseOrderNumber[]">
                     <?php
                     $count ++;
 
@@ -133,5 +133,5 @@ $getExerciseName = "";
             };
         }
     }
-    
+
 </script>

@@ -25,8 +25,8 @@ $pdo = $databaseConnect->getPdo();
 
 
 <?php
-$exerciseName = "Squats";
-
+//$exerciseName = "Squats";
+print_r($_POST);
 $getExerciseResult =  getAllExercises($exerciseName, $pdo);
 //var_dump($getExerciseResult);
 

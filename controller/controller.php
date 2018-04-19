@@ -48,13 +48,31 @@ if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
         #selectExerciseForDayContainer {display:none;}
     </style>
 <?php
-    $exerciseName1 = $_POST["exerciseSelect1"];
-    echo 'exerciseName is:'.$exerciseName.'<br>';
-    $exerciseOrderNumber = $_POST["exerciseOrderNumber"];
-    echo 'exerciseOrderNumber is:'.$exerciseOrderNumber.'<br>';
-    $exerciseDay = $_POST["exerciseDay"];
-    echo 'exerciseDay is:'.$exerciseDay.'<br>';
+    // foreach loop here to loop through post variables and save order so that i can display proper sets
+
+    $count = 1;
+    // exercise type & day always the same and only 1
     $exerciseType = $_POST["exerciseType"];
+    $exerciseDay = $_POST["exerciseDay"];
+
+    $exerciseName.$count = $_POST["exerciseSelect1"];
+    echo $exerciseName.$count;
+    $count = 2;
+    echo '<br>';
+    $exerciseName.$count = $_POST["exerciseSelect2"];
+    echo $exerciseName.$count;
+    echo '<br>';
+//    $exerciseName.$count = $_POST["exerciseSelect3"];
+//    $exerciseName.$count = $_POST["exerciseSelect4"];
+//    $exerciseName.$count = $_POST["exerciseSelect5"];
+
+//    $exerciseName1 = $_POST["exerciseSelect1"];
+//    echo 'exerciseName is:'.$exerciseName.'<br>';
+    $exerciseOrderNumber = $_POST["exerciseOrderNumber1"];
+    echo 'exerciseOrderNumber is:'.$exerciseOrderNumber.'<br>';
+
+    echo 'exerciseDay is:'.$exerciseDay.'<br>';
+
     echo 'exerciseType is:'.$exerciseType.'<br>';
 
     exerciseForDay($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo);
