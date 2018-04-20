@@ -40,9 +40,9 @@ if (null !== (filter_input(INPUT_POST,"submitExerciseDay"))) {
 
 if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
     // with the post variables now i need to set up the rest below
-    echo '<pre>Post:<br>';
-    var_dump($_POST);
-    echo '</pre><br>';
+//    echo '<pre>Post:<br>';
+//    var_dump($_POST);
+//    echo '</pre><br>';
 ?>
     <style>
         #selectExerciseForDayContainer {display:none;}
@@ -54,9 +54,14 @@ if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
         $exerciseType = $_POST["exerciseType"];
         $exerciseDay = $_POST["exerciseDay"];
         $exerciseName = $value;
-        $exerciseOrderNumber = $_POST["exerciseOrderNumber"][$key][$value];
+        if (!empty($_POST["exerciseOrderNumber"][$key][$value])) {
+            $exerciseOrderNumber = $_POST["exerciseOrderNumber"][$key][$value];
+        } else {
+            $exerciseOrderNumber = '';
+        }
+
         exerciseForDay($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo);
     }
-    
+    echo 'hey';
+    header('Location: /calls.php');
 }
-

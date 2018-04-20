@@ -25,11 +25,7 @@ $day ="Monday";
 $getExerciseName = "";
 
 //print_r($exerciseTypeResultAr);
-
-
-
 ?>
-
 <script>
 //   var siteRoot = <?//= SITE_ROOT ?>//;
 </script>
@@ -133,5 +129,4 @@ $getExerciseName = "";
             };
         }
     }
-
 </script>

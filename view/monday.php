@@ -22,11 +22,11 @@ $pdo = $databaseConnect->getPdo();
 </style>
 
 <!--4 exercises per day-->
-
-
+<!------------------------------     Tomorrow Need to figure way out to loop here and show form for each selected exercise from controller.     --------------------------------->
+<!-- pull first from exercise_day db to select which exercise before setting reps/sets-->
 <?php
-//$exerciseName = "Squats";
-print_r($_POST);
+$exerciseName = "Squats";
+//print_r($_POST);
 $getExerciseResult =  getAllExercises($exerciseName, $pdo);
 //var_dump($getExerciseResult);
 
