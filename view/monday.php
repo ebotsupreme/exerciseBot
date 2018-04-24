@@ -11,16 +11,12 @@ require_once (SITE_ROOT . "/./model/model.php");
 // Call the PDO class
 $databaseConnect = new DatabaseConnect();
 $pdo = $databaseConnect->getPdo();
-
-
 ?>
-
 <style>
     th {
         width: 10%;
     }
 </style>
-
 <!--4 exercises per day-->
 <!------------------------------     Tomorrow Need to figure way out to loop here and show form for each selected exercise from controller.     --------------------------------->
 <!-- pull first from exercise_day db to select which exercise before setting reps/sets-->
@@ -35,6 +31,10 @@ $getExerciseResult =  getAllExercises($exerciseName, $pdo);
 //echo "</pre><br>";
 
 ?>
+
+
+
+
 <table>
     <tr>
         <th>Date</th>

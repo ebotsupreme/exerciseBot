@@ -1,5 +1,4 @@
 <?php
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -62,6 +61,6 @@ if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
 
         exerciseForDay($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo);
     }
-    echo 'hey';
-    header('Location: /calls.php');
+    header('Location: /calls.php', true, 301);
+    exit();
 }

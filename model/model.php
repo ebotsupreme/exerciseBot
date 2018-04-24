@@ -87,8 +87,8 @@ function exerciseForDay ($exerciseDay, $exerciseType, $exerciseName, $exerciseOr
     $statement->bindParam("selectedExerciseNumber", $exerciseOrderNumber);
     $statement->execute();
 
-    $message = "Your exercise for the day has been set.";
-    echo "<script type='text/javascript'>alert('$message');</script>";
+//    $message = "Your exercise for the day has been set.";
+//    echo "<script type='text/javascript'>alert('$message');</script>";
 
     } catch (PDOException $e) {
         echo 'Caught exception: ', $e->getMessage(), "\n";
