@@ -12,12 +12,37 @@ require_once(SITE_ROOT . "/includes/header.php");
 <br>
 <div>Choose your day:</div>
 <br>
-<div><a href="/exercise_generator/view/monday.php">Monday</a></div>
-<div><a href="/tuesday.php">Tuesday</a></div>
-<div><a href="/wednesday.php">Wednesday</a></div>
-<div><a href="/thursday.php">Thursday</a></div>
-<div><a href="/friday.php">Friday</a></div>
+<form action="./view/options.php" name="chooseYourDayForm" id="chooseYourDayForm" method="post">
+<div>
+    <a class="chooseDayATag" id="monday" href="javascript:void(0);">Monday</a>
+    <input type="hidden" value="" name="monday">
+</div>
+<div>
+    <a class="chooseDayATag" id="tuesday">Tuesday</a>
+    <input type="hidden" value="Tuesday" name="tuesday">
+</div>
+<div>
+    <a class="chooseDayATag">Wednesday</a>
+    <input type="hidden" value="Wednesday" name="wednesday">
+</div>
+<div>
+    <a class="chooseDayATag">Thursday</a>
+    <input type="hidden" value="Thursday" name="thursday">
+</div>
+<div>
+    <a class="chooseDayATag">Friday</a>
+    <input type="hidden" value="Friday" name="friday" class="disappear">
+</div>
 
-
+</form>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".chooseDayATag").click(function(){
+            var htmlString = $(this).attr("id");
+            console.log(htmlString);
+            $("#chooseYourDayForm").submit();
+        })
+    })
+</script>
 </body>
 </html>
