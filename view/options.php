@@ -11,7 +11,7 @@ require_once (SITE_ROOT . "/./model/model.php");
 // Call the PDO class
 $databaseConnect = new DatabaseConnect();
 $pdo = $databaseConnect->getPdo();
-print_r($_POST);
+
 ?>
 <style>
     #selectExerciseForDayContainer {
@@ -19,3 +19,11 @@ print_r($_POST);
     }
 </style>
 <div>hello</div>
+
+<!-- tomorrow i need to grab the day value from url,.
+    we will need two options here:
+    1. link to set exercises for this day.
+    2. will be to log sets/reps for this day.
+
+ 
+ -->

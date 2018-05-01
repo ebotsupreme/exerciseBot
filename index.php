@@ -18,29 +18,33 @@ require_once(SITE_ROOT . "/includes/header.php");
     <input type="hidden" value="" name="monday">
 </div>
 <div>
-    <a class="chooseDayATag" id="tuesday">Tuesday</a>
-    <input type="hidden" value="Tuesday" name="tuesday">
+    <a class="chooseDayATag" id="tuesday" href="javascript:void(0);">Tuesday</a>
+    <input type="hidden" value="" name="tuesday">
 </div>
 <div>
-    <a class="chooseDayATag">Wednesday</a>
-    <input type="hidden" value="Wednesday" name="wednesday">
+    <a class="chooseDayATag" id="wednesday" href="javascript:void(0);">Wednesday</a>
+    <input type="hidden" value="" name="wednesday">
 </div>
 <div>
-    <a class="chooseDayATag">Thursday</a>
-    <input type="hidden" value="Thursday" name="thursday">
+    <a class="chooseDayATag" id="thursday" href="javascript:void(0);">Thursday</a>
+    <input type="hidden" value="" name="thursday">
 </div>
 <div>
-    <a class="chooseDayATag">Friday</a>
-    <input type="hidden" value="Friday" name="friday" class="disappear">
+    <a class="chooseDayATag" id="friday" href="javascript:void(0);">Friday</a>
+    <input type="hidden" value="" name="friday">
 </div>
-
+<!--    <input type="submit" name="chooseYourDayFormSubmit" id="chooseYourDayFormSubmit">-->
 </form>
 <script type="text/javascript">
     $(document).ready(function() {
+
+        // this grabs the value of the day and passes it to options page with the value of day in the url
         $(".chooseDayATag").click(function(){
             var htmlString = $(this).attr("id");
             console.log(htmlString);
-            $("#chooseYourDayForm").submit();
+            $(this).next('input').val(htmlString);
+
+            $("#chooseYourDayForm").submit(window.location.href="//localhost:80/exercise_generator/view/options.php?exerciseDay="+ htmlString);
         })
     })
 </script>
