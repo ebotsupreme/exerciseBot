@@ -12,18 +12,33 @@ require_once (SITE_ROOT . "/./model/model.php");
 $databaseConnect = new DatabaseConnect();
 $pdo = $databaseConnect->getPdo();
 
+// get exercise name from url
+$exerciseName = trim($_GET["exerciseDay"]);
+
 ?>
 <style>
     #selectExerciseForDayContainer {
         display: none;
     }
 </style>
-<div>hello</div>
+<div><?= $exerciseName ?></div>
+<br>
+<div>
+    <a href="//localhost:80/exercise_generator/view/selectedExercisesForTheDay.php?"<?= $exerciseName ?>>
+        Set Exercise
+    </a>
+</div>
+<br>
+<div>
+    <a href="//localhost:80/exercise_generator/view/monday.php?"<?= $exerciseName ?>">
+        Log Sets & Reps
+    </a>
+</div>
 
 <!-- tomorrow i need to grab the day value from url,.
     we will need two options here:
     1. link to set exercises for this day.
     2. will be to log sets/reps for this day.
 
- 
+
  -->
