@@ -1,33 +1,17 @@
 <?php
-//session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-
 require_once (__DIR__ . "/../config.php");
 require_once(SITE_ROOT . "/./includes/header.php");
 require_once (SITE_ROOT . "/./model/db_connection.php");
 require_once (SITE_ROOT . "/./model/model.php");
-
 // Call the PDO class
 $databaseConnect = new DatabaseConnect();
 $pdo = $databaseConnect->getPdo();
-
-//$exerciseName = "Squats";
-
 $getExercisesForDay = selectExercisesForDay($pdo);
-
-//echo "getExercisesForDay :<pre><br>";
-//print_r($getExercisesForDay);
-//echo "</pre><br>";
-
-$day ="Monday";
-$getExerciseName = "";
-
-//print_r($exerciseTypeResultAr);
+// get exercise name from url
+$day = trim($_GET["exerciseDay"]);
 ?>
-<script>
-//   var siteRoot = <?//= SITE_ROOT ?>//;
-</script>
 <div id="selectExerciseForDayContainer" class="container">
     <div class="row">
         <div class="col-md-12">
@@ -37,7 +21,7 @@ $getExerciseName = "";
     </div>
     <div class="row">
         <div class="col-md-12">
-            <form action="../controller/controller.php" method="post" name="selectExercisesForTheDayForm" id="selectExercisesForTheDayForm">
+            <form action="../controller/controller.php?exerciseDay=<?= $day ?>" method="post" name="selectExercisesForTheDayForm" id="selectExercisesForTheDayForm">
                 <select name="exerciseType" onchange="showExerciseType(this.value)" style="display:block;">
                     <option value="" selected >--Select exercise type--</option>
                     <option value="legs">legs</option>
@@ -63,12 +47,9 @@ $getExerciseName = "";
                     <input type="hidden" value="<?= $count ?>" name="exerciseOrderNumber[]">
                     <?php
                     $count ++;
-
                 } while ($count <= 5);
                 ?>
-                <!--  I could pass the day value through the url when user selects day to here  -->
                 <input type="hidden" value="<?= $day ?>" name="exerciseDay">
-                <!--    Ill need to change the controller after all the above are completed or possibly make a new input filter action in the controller-->
                 <input type="submit" value="Submit" name="submitExerciseForDay" id="submitExerciseForDay">
             </form>
         </div>
@@ -97,12 +78,12 @@ $getExerciseName = "";
             {
                 if (this.readyState === 4 && this.status === 200) {
 
-                        document.getElementById("txtHint_1").innerHTML = this.responseText;
-                        document.getElementById("txtHint_2").innerHTML = this.responseText;
-                        document.getElementById("txtHint_3").innerHTML = this.responseText;
-                        document.getElementById("txtHint_4").innerHTML = this.responseText;
-                        document.getElementById("txtHint_5").innerHTML = this.responseText;
-                        // adding count to txthint and trying to loop but not working
+                    document.getElementById("txtHint_1").innerHTML = this.responseText;
+                    document.getElementById("txtHint_2").innerHTML = this.responseText;
+                    document.getElementById("txtHint_3").innerHTML = this.responseText;
+                    document.getElementById("txtHint_4").innerHTML = this.responseText;
+                    document.getElementById("txtHint_5").innerHTML = this.responseText;
+                    // adding count to txthint and trying to loop but not working
 
 
                 } else {

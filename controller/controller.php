@@ -61,6 +61,7 @@ if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
 
         exerciseForDay($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo);
     }
-    header('Location: /calls.php', true, 301);
-    exit();
+
 }
+header("//localhost:80/exercise_generator/view/monday.php?exerciseDay=$exerciseName", true, 301);
+exit();

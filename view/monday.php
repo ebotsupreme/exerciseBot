@@ -1,40 +1,16 @@
 <?php
-
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-
 require_once (__DIR__ . "/../config.php");
 require_once(SITE_ROOT . "/./includes/header.php");
 require_once (SITE_ROOT . "/./model/db_connection.php");
 require_once (SITE_ROOT . "/./model/model.php");
-
-// Call the PDO class
 $databaseConnect = new DatabaseConnect();
 $pdo = $databaseConnect->getPdo();
-?>
-<style>
-    th {
-        width: 10%;
-    }
-</style>
-<!--4 exercises per day-->
-<!------------------------------     Tomorrow Need to figure way out to loop here and show form for each selected exercise from controller.     --------------------------------->
-<!-- pull first from exercise_day db to select which exercise before setting reps/sets-->
-<?php
 $exerciseName = "Squats";
-//print_r($_POST);
 $getExerciseResult =  getAllExercises($exerciseName, $pdo);
-//var_dump($getExerciseResult);
-
-//echo "<pre><br>";
-//print_r($getExerciseResult);
-//echo "</pre><br>";
-
 ?>
-
-
-
-
+<style>th{width: 10%;}</style>
 <table>
     <tr>
         <th>Date</th>
@@ -50,9 +26,6 @@ $getExerciseResult =  getAllExercises($exerciseName, $pdo);
     </tr>
     <?php
         foreach ($getExerciseResult as $result) {
-
-
-
     ?>
     <tr>
         <td><?= date("n/j/Y" ,strtotime($result["dateCreated"])); ?></td>
@@ -67,7 +40,6 @@ $getExerciseResult =  getAllExercises($exerciseName, $pdo);
         <td><?= $result["SetFour"]; ?></td>
     </tr>
     <?php
-
         }
     ?>
 </table>
