@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
+ob_flush();
 require_once (__DIR__ . "/../config.php");
 require_once (SITE_ROOT . "/./view/monday.php");
 require_once (SITE_ROOT . "/./model/db_connection.php");
@@ -63,5 +63,4 @@ if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
     }
 
 }
-header("//localhost:80/exercise_generator/view/monday.php?exerciseDay=$exerciseName", true, 301);
 exit();

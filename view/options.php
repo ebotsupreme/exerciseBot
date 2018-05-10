@@ -25,13 +25,19 @@ $exerciseName = trim($_GET["exerciseDay"]);
 <br>
 <div>
     <a href="//localhost:80/exercise_generator/view/selectedExercisesForTheDay.php?exerciseDay=<?= $exerciseName ?>">
-        Set Exercise
+        Set Exercise for <?= $exerciseName ?>
     </a>
 </div>
 <br>
 <div>
     <a href="//localhost:80/exercise_generator/view/monday.php?exerciseDay=<?= $exerciseName ?>">
-        Log Sets & Reps
+        Log Sets & Reps for <?= $exerciseName ?>
+    </a>
+</div>
+<br>
+<div>
+    <a href="//localhost:80/exercise_generator/">
+        Select another day
     </a>
 </div>
 
