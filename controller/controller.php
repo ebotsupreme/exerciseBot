@@ -5,6 +5,7 @@ error_reporting(E_ALL);
 ob_flush();
 require_once (__DIR__ . "/../config.php");
 require_once (SITE_ROOT . "/./view/monday.php");
+require_once(SITE_ROOT . "/./view/showSelectedExercisesToLogReps.php");
 require_once (SITE_ROOT . "/./model/db_connection.php");
 require_once (SITE_ROOT . "/./model/model.php");
 

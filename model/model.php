@@ -6,6 +6,7 @@ ini_set('display_startup_errors', 1);
 require_once(__DIR__ . "/../config.php");
 require_once(SITE_ROOT . "./model/db_connection.php");
 require_once(SITE_ROOT . "./view/selectedExercisesForTheDay.php");
+require_once(SITE_ROOT . "/./view/showSelectedExercisesToLogReps.php");
 
 $dbError = "";
 
@@ -95,4 +96,22 @@ function exerciseForDay ($exerciseDay, $exerciseType, $exerciseName, $exerciseOr
     }
     echo "<script> window.location.replace('//localhost:80/exercise_generator/view/options.php?exerciseDay=$exerciseDay');</script>";
 //        header("//localhost:80/exercise_generator/view/monday.php?exerciseDay=$exerciseName", true);
+}
+
+function getSelectedExerciseForTheWeekday($exerciseDay, $pdo)
+{
+    try {
+
+        $statement = $pdo->prepare("SELECT * 
+                                    FROM exercises
+                                    WHERE exerciseName = :exerciseName 
+                                    ORDER BY dateCreated DESC LIMIT 4");
+        $statement->bindParam("exerciseName", $exerciseName);
+        $statement->execute();
+        $exercise_Ar = $statement->fetchAll();
+
+        return $exercise_Ar;
+    } catch (PDOException $e) {
+        echo 'Caught exception: ', $e->getMessage(), "\n";
+    }
 }

@@ -10,7 +10,14 @@ $pdo = $databaseConnect->getPdo();
 $exerciseName = "Squats";
 $getExerciseResult =  getAllExercises($exerciseName, $pdo);
 ?>
-<style>th{width: 10%;}</style>
+<style>
+    th{
+        width: 10%;
+    }
+    #selectExerciseForDayContainer {
+        display: none;
+    }
+</style>
 <table>
     <tr>
         <th>Date</th>
