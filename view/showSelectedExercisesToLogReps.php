@@ -7,8 +7,8 @@ require_once (SITE_ROOT . "/./model/db_connection.php");
 require_once (SITE_ROOT . "/./model/model.php");
 $databaseConnect = new DatabaseConnect();
 $pdo = $databaseConnect->getPdo();
-$getExerciseResult =  getAllExercises($exerciseName, $pdo);
-var_dump($getExerciseResult);
+//$getExerciseResult =  getAllExercises($exerciseName, $pdo);
+//var_dump($getExerciseResult);
 ?>
 <style>
     th{
@@ -20,5 +20,13 @@ var_dump($getExerciseResult);
 </style>
 
 <div>
-
+Select your exercise to log:
 </div>
+<br>
+
+<!--show exercises here from db-->
+<form action="" method="post" id="">
+
+</form>
+
+

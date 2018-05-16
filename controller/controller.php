@@ -2,9 +2,9 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-ob_flush();
+//ob_flush();
 require_once (__DIR__ . "/../config.php");
-require_once (SITE_ROOT . "/./view/monday.php");
+require_once(SITE_ROOT . "/./view/logExercise.php");
 require_once(SITE_ROOT . "/./view/showSelectedExercisesToLogReps.php");
 require_once (SITE_ROOT . "/./model/db_connection.php");
 require_once (SITE_ROOT . "/./model/model.php");
@@ -54,6 +54,7 @@ if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
         $exerciseType = $_POST["exerciseType"];
         $exerciseDay = $_POST["exerciseDay"];
         $exerciseName = $value;
+        print_r($_POST["exerciseOrderNumber"]);
         if (!empty($_POST["exerciseOrderNumber"][$key][$value])) {
             $exerciseOrderNumber = $_POST["exerciseOrderNumber"][$key][$value];
         } else {

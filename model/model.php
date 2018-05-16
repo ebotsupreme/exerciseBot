@@ -95,7 +95,7 @@ function exerciseForDay ($exerciseDay, $exerciseType, $exerciseName, $exerciseOr
         echo 'Caught exception: ', $e->getMessage(), "\n";
     }
     echo "<script> window.location.replace('//localhost:80/exercise_generator/view/options.php?exerciseDay=$exerciseDay');</script>";
-//        header("//localhost:80/exercise_generator/view/monday.php?exerciseDay=$exerciseName", true);
+//        header("//localhost:80/exercise_generator/view/logExercise.php?exerciseDay=$exerciseName", true);
 }
 
 function getSelectedExerciseForTheWeekday($exerciseDay, $pdo)

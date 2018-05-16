@@ -14,6 +14,11 @@ $getExercisesForDay = selectExercisesForDay($pdo);
 // get exercise name from url
 $day = trim($_GET["exerciseDay"]);
 ?>
+<style>
+    #selectExerciseForDayContainer {
+        display: block;
+    }
+</style>
 <div id="selectExerciseForDayContainer" class="container">
     <div class="row">
         <div class="col-md-12">

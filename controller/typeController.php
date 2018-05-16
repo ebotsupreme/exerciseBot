@@ -8,7 +8,7 @@ require_once (__DIR__ . "/../config.php");
 require_once (SITE_ROOT . "/./model/db_connection.php");
 
 //require_once(SITE_ROOT . "/./includes/header.php");
-//require_once (SITE_ROOT . "/./view/monday.php");
+//require_once (SITE_ROOT . "/./view/logExercise.php");
 //require_once (SITE_ROOT . "/./model/model.php");
 //require_once(SITE_ROOT . "./view/selectedExercisesForTheDay.php");
 

@@ -13,7 +13,7 @@ $databaseConnect = new DatabaseConnect();
 $pdo = $databaseConnect->getPdo();
 
 // get exercise name from url
-$exerciseName = trim($_GET["exerciseDay"]);
+$exerciseDay = trim($_GET["exerciseDay"]);
 
 ?>
 <style>
@@ -21,11 +21,11 @@ $exerciseName = trim($_GET["exerciseDay"]);
         display: none;
     }
 </style>
-<div><?= $exerciseName ?></div>
+<div><?= $exerciseDay ?></div>
 <br>
 <div>
-    <a href="//localhost:80/exercise_generator/view/selectedExercisesForTheDay.php?exerciseDay=<?= $exerciseName ?>">
-        Set Exercise for <?= $exerciseName ?>
+    <a href="//localhost:80/exercise_generator/view/selectedExercisesForTheDay.php?exerciseDay=<?= $exerciseDay ?>">
+        Set Exercise for <?= $exerciseDay ?>
     </a>
 </div>
 <br>
@@ -35,8 +35,8 @@ $exerciseName = trim($_GET["exerciseDay"]);
 <!--    </a>-->
 <!--</div>-->
 <div>
-    <a href="//localhost:80/exercise_generator/view/showSelectedExercisesForTheDay.php?exerciseDay=<?= $exerciseName ?>">
-        Log Sets & Reps for <?= $exerciseName ?>
+    <a href="//localhost:80/exercise_generator/view/showSelectedExercisesToLogReps.php?exerciseDay=<?= $exerciseDay ?>">
+        Log Sets & Reps for <?= $exerciseDay ?>
     </a>
 </div>
 <br>
@@ -46,10 +46,11 @@ $exerciseName = trim($_GET["exerciseDay"]);
     </a>
 </div>
 
-<!-- tomorrow i need to grab the day value from url,.
+<!-- tomorrow i need to figure out how to:
     we will need two options here:
-    1. link to set exercises for this day.
-    2. will be to log sets/reps for this day.
+    1. click on log sets and reps and pull up all exercises for day by finishing ujp function in controller
+    at the bottom of page and calling it here.
+    2. link that result to logExercise.php
+    3. on set exercise for monday i need to fix the order number and active status so it records it in phpmyadmin.
+    -->
 
-
- -->
