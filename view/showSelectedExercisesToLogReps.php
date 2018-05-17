@@ -9,6 +9,12 @@ $databaseConnect = new DatabaseConnect();
 $pdo = $databaseConnect->getPdo();
 //$getExerciseResult =  getAllExercises($exerciseName, $pdo);
 //var_dump($getExerciseResult);
+$exerciseDay = trim($_GET['exerciseDay']);
+echo $exerciseDay;
+$getList = getSelectedExerciseForTheWeekday($exerciseDay, $pdo);
+echo '<pre><br>';
+var_dump($getList);
+echo '</pre><br>';
 ?>
 <style>
     th{

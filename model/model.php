@@ -103,10 +103,10 @@ function getSelectedExerciseForTheWeekday($exerciseDay, $pdo)
     try {
 
         $statement = $pdo->prepare("SELECT * 
-                                    FROM exercises
-                                    WHERE exerciseName = :exerciseName 
-                                    ORDER BY dateCreated DESC LIMIT 4");
-        $statement->bindParam("exerciseName", $exerciseName);
+                                    FROM exercise_day
+                                    WHERE exerciseDay = :exerciseDay 
+                                    ");
+        $statement->bindParam("exerciseDay", $exerciseDay);
         $statement->execute();
         $exercise_Ar = $statement->fetchAll();
 
