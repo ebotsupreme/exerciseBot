@@ -48,9 +48,7 @@ $exerciseDay = trim($_GET["exerciseDay"]);
 
 <!-- tomorrow i need to figure out how to:
     we will need two options here:
-    1. click on log sets and reps and pull up all exercises for day by finishing ujp function in controller
-    at the bottom of page and calling it here.
-    2. link that result to logExercise.php
+
     3. on set exercise for monday i need to fix the order number and active status so it records it in phpmyadmin.
     -->
 

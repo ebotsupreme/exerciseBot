@@ -43,6 +43,7 @@ if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
 //    echo '<pre>Post:<br>';
 //    var_dump($_POST);
 //    echo '</pre><br>';
+
 ?>
     <style>
         #selectExerciseForDayContainer {display:none;}
@@ -51,13 +52,24 @@ if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
     // foreach loop here to loop through post variables and save order so that i can display proper sets
 
     foreach ($_POST["exerciseSelect"] as $key => $value) {
+//        echo '<pre>exerciseSelect:<br>';
+//        var_dump($_POST["exerciseSelect"]);
+//        echo '</pre><br>';
         $exerciseType = $_POST["exerciseType"];
         $exerciseDay = $_POST["exerciseDay"];
         $exerciseName = $value;
-        print_r($_POST["exerciseOrderNumber"]);
-        if (!empty($_POST["exerciseOrderNumber"][$key][$value])) {
-            $exerciseOrderNumber = $_POST["exerciseOrderNumber"][$key][$value];
+
+//        echo '<pre>Order Numb:<br>';
+//        var_dump($_POST["exerciseOrderNumber"]);
+//        echo '</pre><br>';
+
+
+        if (!empty($_POST["exerciseOrderNumber"])) {
+//            echo $_POST["exerciseOrderNumber"][$key];
+            $exerciseOrderNumber = $_POST["exerciseOrderNumber"][$key];
+
         } else {
+
             $exerciseOrderNumber = '';
         }
 
