@@ -53,7 +53,7 @@ if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
 
     foreach ($_POST["exerciseSelect"] as $key => $value) {
 //        echo '<pre>exerciseSelect:<br>';
-//        var_dump($_POST["exerciseSelect"]);
+//        var_dump($_POST);
 //        echo '</pre><br>';
         $exerciseType = $_POST["exerciseType"];
         $exerciseDay = $_POST["exerciseDay"];
@@ -62,18 +62,23 @@ if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
 //        echo '<pre>Order Numb:<br>';
 //        var_dump($_POST["exerciseOrderNumber"]);
 //        echo '</pre><br>';
+//        echo 'value:';
+//echo $value;
 
-
-        if (!empty($_POST["exerciseOrderNumber"])) {
+        if (!empty($_POST["exerciseSelect"])) {
 //            echo $_POST["exerciseOrderNumber"][$key];
+//            echo '<br>';
             $exerciseOrderNumber = $_POST["exerciseOrderNumber"][$key];
 
-        } else {
+        } elseif($value == 'none') {
 
             $exerciseOrderNumber = '';
+        } else {
+            $exerciseOrderNumber = '';
         }
-
-        exerciseForDay($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo);
+        setInactive($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo);
+//        setInactiveToNone($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo);
+//        exerciseForDay($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo);
     }
 
 }
