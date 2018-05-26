@@ -45,6 +45,7 @@ $exerciseDay = trim($_GET["exerciseDay"]);
         Select another day
     </a>
 </div>
+<?php print_r($inactive); ?>
 
 <!-- tomorrow i need to figure out how to:
     we will need two options here:

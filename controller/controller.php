@@ -76,9 +76,9 @@ if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
         } else {
             $exerciseOrderNumber = '';
         }
-        setInactive($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo);
-//        setInactiveToNone($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo);
-//        exerciseForDay($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo);
+        setInactive($exerciseDay, $exerciseType, $pdo);
+//        setInactiveToNone($exerciseDay, $exerciseType, $exerciseOrderNumber, $pdo);
+        exerciseForDay($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo);
     }
 
 }

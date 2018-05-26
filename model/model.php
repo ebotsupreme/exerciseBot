@@ -75,31 +75,30 @@ function selectExercisesForDay($pdo)
 
 }
 
-function setInactive ($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo)
+function setInactive ($exerciseDay, $exerciseType, $pdo)
 {
     // check by day, to see if there are exercises active first and set it to inactive
     try {
 
         $statement = $pdo->prepare("UPDATE exercise_day 
                                        SET status = 'inactive'
-                                       WHERE exerciseDay = :exerciseDay, exerciseType = :exerciseType, exerciseType = :exerciseName, exerciseOrderNumber = :exerciseOrderNumber,;
+                                       WHERE exerciseDay = :exerciseDay, exerciseType = :exerciseType
                                        ");
         $statement->bindParam("exerciseDay", $exerciseDay);
         $statement->bindParam("exerciseType", $exerciseType);
-        $statement->bindParam("exerciseName", $exerciseName);
-        $statement->bindParam("exerciseOrderNumber", $exerciseOrderNumber);
         $statement->execute();
+        $inactive = $statement->fetchAll();
     } catch (PDOException $e) {
         echo 'Caught exception: ', $e->getMessage(), "\n";
     }
 }
-function setInactiveToNone ($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo)
+function setInactiveToNone ($exerciseDay, $exerciseType, $exerciseOrderNumber, $pdo)
 {
     // check by day, to see if there are exercises active first and set it to inactive
     try {
         $statement = $pdo->prepare("UPDATE exercise_day 
                                        SET status = 'inactive'
-                                       WHERE exerciseDay = :exerciseDay, exerciseType = :exerciseType, exerciseType = 'none', exerciseOrderNumber = :exerciseOrderNumber,;
+                                       WHERE exerciseDay = :exerciseDay AND exerciseType = :exerciseType AND exerciseType = 'none' AND exerciseOrderNumber = :exerciseOrderNumber
                                        ");
         $statement->bindParam("exerciseDay", $exerciseDay);
         $statement->bindParam("exerciseType", $exerciseType);
