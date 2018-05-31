@@ -52,33 +52,41 @@ if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
     // foreach loop here to loop through post variables and save order so that i can display proper sets
 
     foreach ($_POST["exerciseSelect"] as $key => $value) {
-//        echo '<pre>exerciseSelect:<br>';
-//        var_dump($_POST);
-//        echo '</pre><br>';
+        echo '<pre>exerciseSelect:<br>';
+        var_dump($_POST);
+        echo '</pre><br>';
         $exerciseType = $_POST["exerciseType"];
         $exerciseDay = $_POST["exerciseDay"];
         $exerciseName = $value;
-
+        $active = $_POST['active'][$key];
 //        echo '<pre>Order Numb:<br>';
 //        var_dump($_POST["exerciseOrderNumber"]);
 //        echo '</pre><br>';
-//        echo 'value:';
-//echo $value;
+        echo '<br>';
+        echo 'value: ';
+        echo $value;
+        echo '<br>';
+
 
         if (!empty($_POST["exerciseSelect"])) {
 //            echo $_POST["exerciseOrderNumber"][$key];
 //            echo '<br>';
             $exerciseOrderNumber = $_POST["exerciseOrderNumber"][$key];
-
-        } elseif($value == 'none') {
-
-            $exerciseOrderNumber = '';
+            echo $exerciseOrderNumber;
         } else {
             $exerciseOrderNumber = '';
         }
-        setInactive($exerciseDay, $exerciseType, $pdo);
+
+        if($value == 'none') {
+            $exerciseOrderNumber = '';
+            $active = $_POST['active'][$key] = 'inactive';
+            echo '<pre>active::<br>';
+            var_dump($_POST['active']);
+            echo '</pre><br>';
+        }
+//        setInactive($exerciseDay, $exerciseType, $pdo);
 //        setInactiveToNone($exerciseDay, $exerciseType, $exerciseOrderNumber, $pdo);
-        exerciseForDay($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo);
+        exerciseForDay($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $active, $pdo);
     }
 
 }

@@ -109,17 +109,18 @@ function setInactiveToNone ($exerciseDay, $exerciseType, $exerciseOrderNumber, $
     }
 }
 
-function exerciseForDay ($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $pdo)
+function exerciseForDay ($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $active, $pdo)
 {
 
     try {
     $statement = $pdo->prepare("INSERT INTO exercise_day (exerciseDay, exerciseType, exerciseName, selectedExerciseNumber, status, dateCreated)
-                               VALUES(:exerciseDay, :exerciseType, :exerciseName, :selectedExerciseNumber, 'active', NOW())
+                               VALUES(:exerciseDay, :exerciseType, :exerciseName, :selectedExerciseNumber, :status, NOW())
                                ");
     $statement->bindParam("exerciseDay", $exerciseDay);
     $statement->bindParam("exerciseType", $exerciseType);
     $statement->bindParam("exerciseName", $exerciseName);
     $statement->bindParam("selectedExerciseNumber", $exerciseOrderNumber);
+    $statement->bindParam("status", $active);
     $statement->execute();
 
 //    $message = "Your exercise for the day has been set.";

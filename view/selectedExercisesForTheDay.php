@@ -52,6 +52,7 @@ $day = trim($_GET["exerciseDay"]);
                     <br>
                     <br>
                     <input type="hidden" value="<?= $count ?>" name="exerciseOrderNumber[]">
+                    <input type="hidden" value="active" name="active[]">
                     <?php
                     $count ++;
                 } while ($count <= 5);
