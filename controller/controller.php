@@ -84,7 +84,7 @@ if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
             var_dump($_POST['active']);
             echo '</pre><br>';
         }
-//        setInactive($exerciseDay, $exerciseType, $pdo);
+        setInactive($exerciseDay, $exerciseType, $pdo);
 //        setInactiveToNone($exerciseDay, $exerciseType, $exerciseOrderNumber, $pdo);
         exerciseForDay($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $active, $pdo);
     }

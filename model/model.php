@@ -82,12 +82,11 @@ function setInactive ($exerciseDay, $exerciseType, $pdo)
 
         $statement = $pdo->prepare("UPDATE exercise_day 
                                        SET status = 'inactive'
-                                       WHERE exerciseDay = :exerciseDay, exerciseType = :exerciseType
+                                       WHERE exerciseDay = :exerciseDay AND exerciseType = :exerciseType And status = 'active';
                                        ");
         $statement->bindParam("exerciseDay", $exerciseDay);
         $statement->bindParam("exerciseType", $exerciseType);
         $statement->execute();
-        $inactive = $statement->fetchAll();
     } catch (PDOException $e) {
         echo 'Caught exception: ', $e->getMessage(), "\n";
     }
