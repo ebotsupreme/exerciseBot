@@ -75,22 +75,22 @@ function selectExercisesForDay($pdo)
 
 }
 
-function setInactive ($exerciseDay, $exerciseType, $pdo)
-{
-    // check by day, to see if there are exercises active first and set it to inactive
-    try {
-
-        $statement = $pdo->prepare("UPDATE exercise_day 
-                                       SET status = 'inactive'
-                                       WHERE exerciseDay = :exerciseDay AND exerciseType = :exerciseType And status = 'active';
-                                       ");
-        $statement->bindParam("exerciseDay", $exerciseDay);
-        $statement->bindParam("exerciseType", $exerciseType);
-        $statement->execute();
-    } catch (PDOException $e) {
-        echo 'Caught exception: ', $e->getMessage(), "\n";
-    }
-}
+//function setInactive ($exerciseDay, $exerciseType, $pdo)
+//{
+//    // check by day, to see if there are exercises active first and set it to inactive
+//    try {
+//
+//        $statement = $pdo->prepare("UPDATE exercise_day
+//                                       SET status = 'inactive'
+//                                       WHERE exerciseDay = :exerciseDay AND exerciseType = :exerciseType And status = 'active';
+//                                       ");
+//        $statement->bindParam("exerciseDay", $exerciseDay);
+//        $statement->bindParam("exerciseType", $exerciseType);
+//        $statement->execute();
+//    } catch (PDOException $e) {
+//        echo 'Caught exception: ', $e->getMessage(), "\n";
+//    }
+//}
 function setInactiveToNone ($exerciseDay, $exerciseType, $exerciseOrderNumber, $pdo)
 {
     // check by day, to see if there are exercises active first and set it to inactive
