@@ -61,6 +61,7 @@ if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
     </style>
 <?php
 
+    // selecting active exercises
     try {
         $statement = $pdo->prepare("
                                       SELECT * FROM exercise_day 
