@@ -61,49 +61,75 @@ if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
     </style>
 <?php
 
-    // selecting active exercises
-    try {
-        $statement = $pdo->prepare("
+
+    echo '<pre>POST::<br><hr>';
+    print_r($_POST);
+    echo '</pre><br><hr>';
+
+    // get post variables
+    foreach ($_POST["exerciseSelect"] as $key => $value) {
+        $exerciseType = $_POST["exerciseType"];
+        $exerciseDay = $_POST["exerciseDay"];
+
+        // selecting active exercises
+        try {
+            $statement = $pdo->prepare("
                                       SELECT * FROM exercise_day 
                                        WHERE status = 'active'
                                        AND exerciseType = :exerciseType And exerciseDay = :exerciseDay;
                                        ");
-        $statement->bindParam("exerciseDay", $exerciseDay);
-        $statement->bindParam("exerciseType", $exerciseType);
-        $active_exercise_Ar = $statement->fetchAll();
+            $statement->bindParam("exerciseDay", $exerciseDay);
+            $statement->bindParam("exerciseType", $exerciseType);
+            $statement->execute();
+            $active_exercise_Ar = $statement->fetchAll();
 
-        echo '<pre>$active_exercise_Ar::<br><hr>';
-        print_r($active_exercise_Ar);
-        echo '</pre><br><hr>';
 
-    } catch (PDOException $e) {
-        echo 'Caught exception: ', $e->getMessage(), "\n";
+
+        } catch (PDOException $e) {
+            echo 'Caught exception: ', $e->getMessage(), "\n";
+        }
     }
+//    echo '<pre>$active_exercise_Ar::<br><hr>';
+//    print_r($active_exercise_Ar);
+//    echo '</pre><br><hr>';
+//
+    if (!empty($active_exercise_Ar)) {
+        foreach ($active_exercise_Ar as $activeExercise) {
+            echo '<pre>$activeExercise::<br><hr>';
+            print_r($activeExercise);
+            echo '</pre><br><hr>';
+
+            $exerciseDay = $activeExercise["exerciseDay"];
+            $exerciseType = $activeExercise["exerciseType"];
+            $exerciseStatus = $activeExercise["status"];
+
+            // set active exercises to inactive here
+            try {
+                $statement = $pdo->prepare("UPDATE exercise_day 
+                                       SET status = 'inactive'
+                                       WHERE exerciseDay = :exerciseDay AND exerciseType = :exerciseType AND status = :status
+                                       ");
+                $statement->bindParam("exerciseDay", $exerciseDay);
+                $statement->bindParam("exerciseType", $exerciseType);
+                $statement->bindParam("status", $exerciseStatus);
+                $statement->execute();
+            } catch (PDOException $e) {
+                echo 'Caught exception: ', $e->getMessage(), "\n";
+            }
+
+        }
+    }
+
+
 
     // foreach loop here to loop through post variables and save order so that i can display proper sets
     foreach ($_POST["exerciseSelect"] as $key => $value) {
 
-        // check to see if there are active exercises set previously
 
-
-//        echo '<pre>$active_exercise_Ar::<br><hr>';
-//        print_r($active_exercise_Ar);
-//        echo '</pre><br><hr>';
-
-        echo '<pre>exerciseSelect:<br>';
-        var_dump($_POST);
-        echo '</pre><br>';
         $exerciseType = $_POST["exerciseType"];
         $exerciseDay = $_POST["exerciseDay"];
         $exerciseName = $value;
         $active = $_POST['active'][$key];
-//        echo '<pre>Order Numb:<br>';
-//        var_dump($_POST["exerciseOrderNumber"]);
-//        echo '</pre><br>';
-        echo '<br>';
-        echo 'value: ';
-        echo $value;
-        echo '<br>';
 
 
         if (!empty($_POST["exerciseSelect"])) {
@@ -126,7 +152,7 @@ if (null !== filter_input(INPUT_POST, "submitExerciseForDay")) {
         }
 //        setInactive($exerciseDay, $exerciseType, $pdo);
 //        setInactiveToNone($exerciseDay, $exerciseType, $exerciseOrderNumber, $pdo);
-//        exerciseForDay($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $active, $pdo);
+        exerciseForDay($exerciseDay, $exerciseType, $exerciseName, $exerciseOrderNumber, $active, $pdo);
     }
 
 }
