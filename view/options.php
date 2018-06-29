@@ -35,7 +35,7 @@ $exerciseDay = trim($_GET["exerciseDay"]);
 <!--    </a>-->
 <!--</div>-->
 <div>
-    <a href="//localhost:80/exercise_generator/view/showSelectedExercisesToLogReps.php?exerciseDay=<?= $exerciseDay ?>">
+    <a href="//localhost:80/exercise_generator/view/logExercise.php?exerciseDay=<?= $exerciseDay ?>">
         Log Sets & Reps for <?= $exerciseDay ?>
     </a>
 </div>
@@ -45,11 +45,5 @@ $exerciseDay = trim($_GET["exerciseDay"]);
         Select another day
     </a>
 </div>
-<?php print_r($inactive); ?>
 
-<!-- tomorrow i need to figure out how to:
-    we will need two options here:
-
-    3. on set exercise for monday i need to fix the order number and active status so it records it in phpmyadmin.
-    -->
 

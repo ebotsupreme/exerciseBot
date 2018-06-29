@@ -51,6 +51,9 @@ function exerciseLogCreate($exerciseName, $weightOne, $setOne, $weightTwo, $setT
 
         $message = "Your exercise has been saved!";
         echo "<script type='text/javascript'>alert('$message');</script>";
+        echo "<script> 
+                window.location.replace('//localhost:80/exercise_generator/view/logExercise.php');
+              </script>";
     } catch (PDOException $e) {
         echo 'Caught exception: ', $e->getMessage(), "\n";
     }
@@ -138,7 +141,7 @@ function getSelectedExerciseForTheWeekday($exerciseDay, $pdo)
 
         $statement = $pdo->prepare("SELECT * 
                                     FROM exercise_day
-                                    WHERE exerciseDay = :exerciseDay 
+                                    WHERE exerciseDay = :exerciseDay AND status = 'active'
                                     ");
         $statement->bindParam("exerciseDay", $exerciseDay);
         $statement->execute();

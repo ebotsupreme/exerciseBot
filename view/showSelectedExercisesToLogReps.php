@@ -25,14 +25,5 @@ $getList = getSelectedExerciseForTheWeekday($exerciseDay, $pdo);
     }
 </style>
 
-<div>
-Select your exercise to log:
-</div>
-<br>
-
-<!--show exercises here from db-->
-<form action="" method="post" id="">
-
-</form>
 
 

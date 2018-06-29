@@ -7,8 +7,28 @@ require_once (SITE_ROOT . "/./model/db_connection.php");
 require_once (SITE_ROOT . "/./model/model.php");
 $databaseConnect = new DatabaseConnect();
 $pdo = $databaseConnect->getPdo();
+
+// this brings up all exercises for 1 type of exercise
 $exerciseName = "Squats";
 $getExerciseResult =  getAllExercises($exerciseName, $pdo);
+
+// day comes from the options page h ref
+$exerciseDay = trim($_GET['exerciseDay']);
+echo $exerciseDay;
+
+// pass the day from original link to this page to get active exercises for the day
+$getList = getSelectedExerciseForTheWeekday($exerciseDay, $pdo);
+//echo '<pre><br>';
+//print_r($getList);
+//echo '</pre><br>';
+
+// loop through getList ar and select active exercises for this day
+foreach ($getList as $activeExercises) {
+    echo '<pre><br>';
+    print_r($activeExercises);
+    echo '</pre><br>';
+}
+
 ?>
 <style>
     th{
@@ -18,6 +38,9 @@ $getExerciseResult =  getAllExercises($exerciseName, $pdo);
         display: none;
     }
 </style>
+<div>
+    Select your exercise to log:
+</div>
 <table>
     <tr>
         <th>Date</th>
