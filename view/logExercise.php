@@ -49,9 +49,12 @@ foreach ($getList as $activeExercises) {
 
         $exerciseName = $activeExercises["exerciseName"];
         $exerciseID = $activeExercises["id"];
-        if ($exerciseName == $exerciseName) {
-            echo 'true';
-        }
+
+        // here to do //
+        // do a query to exerciseSelect table to grab all available exercises.
+        // then do an if test here to compare the exercis name from that query to the $exerciseName here.
+        // if true, mark as selected. else leave selected as blank.
+
     ?>
         <option id="<?= $exerciseID ?>" value="<?= $exerciseName ?>"><?= $exerciseName ?></option>
     <?php
