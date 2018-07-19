@@ -22,7 +22,6 @@ $getList = getSelectedExerciseForTheWeekday($exerciseDay, $pdo);
 //print_r($getList);
 //echo '</pre><br>';
 
-// loop through getList ar and select active exercises for this day
 foreach ($getList as $activeExercises) {
     echo '<pre><br>';
     print_r($activeExercises);
@@ -41,6 +40,29 @@ foreach ($getList as $activeExercises) {
 <div>
     Select your exercise to log:
 </div>
+
+<!-- Drop down of exercise here that will trigger table below -->
+<select name="selectLogExercise" id="selectLogExercise">
+    <?php
+    // loop through getList ar and select active exercises for this day
+    foreach ($getList as $activeExercises) {
+
+        $exerciseName = $activeExercises["exerciseName"];
+        $exerciseID = $activeExercises["id"];
+        if ($exerciseName == $exerciseName) {
+            echo 'true';
+        }
+    ?>
+        <option id="<?= $exerciseID ?>" value="<?= $exerciseName ?>"><?= $exerciseName ?></option>
+    <?php
+
+    }
+    ?>
+
+
+</select>
+
+<!-- This table will show your exercise history depending on what you pick -->
 <table>
     <tr>
         <th>Date</th>
@@ -73,6 +95,8 @@ foreach ($getList as $activeExercises) {
         }
     ?>
 </table>
+
+
 <br>
 <form action="../controller/controller.php" method="post" name="exerciseForm">
     <input type="hidden" name="squats" value="Squats">
