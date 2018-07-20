@@ -8,6 +8,7 @@ require_once(SITE_ROOT . "/./includes/header.php");
 require_once (SITE_ROOT . "/./model/db_connection.php");
 require_once (SITE_ROOT . "/./model/model.php");
 
+
 // Call the PDO class
 $databaseConnect = new DatabaseConnect();
 $pdo = $databaseConnect->getPdo();

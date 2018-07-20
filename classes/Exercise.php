@@ -2,14 +2,23 @@
 
 class Exercise {
 
-    var $exercise;
-    function set_exercise($new_exercise)
-    {
-        $this->exercise = $new_exercise;
+    private $pdo;
+
+    public function __construct($pdo) {
+        $this->pdo = $pdo;
     }
-    function get_exercise()
+
+    public function exercise_select()
     {
-        return $this->exercise;
+        try {
+            $statement = $this->pdo->prepare("SELECT exerciseName 
+                                        FROM exercise_select");
+            $exercise_select_Ar = $statement->fetchAll();
+
+        } catch (PDOException $e) {
+            echo 'Caught exception: ' . $e->getMessage();
+        }
     }
+
 
 }

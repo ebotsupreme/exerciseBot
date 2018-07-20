@@ -5,6 +5,7 @@ require_once (__DIR__ . "/../config.php");
 require_once(SITE_ROOT . "/./includes/header.php");
 require_once (SITE_ROOT . "/./model/db_connection.php");
 require_once (SITE_ROOT . "/./model/model.php");
+require_once (SITE_ROOT . "/./classes/Exercise.php");
 $databaseConnect = new DatabaseConnect();
 $pdo = $databaseConnect->getPdo();
 
@@ -21,6 +22,14 @@ $getList = getSelectedExerciseForTheWeekday($exerciseDay, $pdo);
 //echo '<pre><br>';
 //print_r($getList);
 //echo '</pre><br>';
+var_dump($pdo);
+$exerciseConnect = new Exercise($pdo);
+var_dump($exerciseConnect);
+$result = $exerciseConnect->exercise_select();
+
+echo '<pre>result<br>';
+print_r($result);
+echo '</pre><br>';
 
 foreach ($getList as $activeExercises) {
     echo '<pre><br>';
@@ -44,6 +53,9 @@ foreach ($getList as $activeExercises) {
 <!-- Drop down of exercise here that will trigger table below -->
 <select name="selectLogExercise" id="selectLogExercise">
     <?php
+
+
+
     // loop through getList ar and select active exercises for this day
     foreach ($getList as $activeExercises) {
 
