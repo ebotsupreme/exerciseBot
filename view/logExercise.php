@@ -22,14 +22,31 @@ $getList = getSelectedExerciseForTheWeekday($exerciseDay, $pdo);
 //echo '<pre><br>';
 //print_r($getList);
 //echo '</pre><br>';
-var_dump($pdo);
-$exerciseConnect = new Exercise($pdo);
-var_dump($exerciseConnect);
-$result = $exerciseConnect->exercise_select();
 
-echo '<pre>result<br>';
-print_r($result);
-echo '</pre><br>';
+//$exerciseConnect = new Exercise($pdo);
+//$exercise_select_Ar = $exerciseConnect->exercise_select();
+//echo '<pre>result<br>';
+//print_r($exercise_select_Ar);
+//echo '</pre><br>';
+
+
+function queryExerciseSelect()
+{
+    global $pdo;
+    // selecting active exercises
+    try {
+        $statement = $pdo->prepare("SELECT exerciseName FROM exercise_select");
+        $statement->execute();
+        $exerciseSelect_Ar2 = $statement->fetchAll();
+
+        return $exerciseSelect_Ar2;
+    } catch (PDOException $e) {
+        echo 'Caught exception: ', $e->getMessage(), "\n";
+        echo '<pre><br>';
+        print_r($e);
+        echo '</pre><br>';
+    }
+}
 
 foreach ($getList as $activeExercises) {
     echo '<pre><br>';
@@ -62,16 +79,29 @@ foreach ($getList as $activeExercises) {
         $exerciseName = $activeExercises["exerciseName"];
         $exerciseID = $activeExercises["id"];
 
-        // here to do //
+
         // do a query to exerciseSelect table to grab all available exercises.
-        // then do an if test here to compare the exercis name from that query to the $exerciseName here.
-        // if true, mark as selected. else leave selected as blank.
+        $res = queryExerciseSelect();
+        echo '<pre><br>';
+        print_r($res);
+        echo '</pre><br>';
 
+        $exerciseResult = $res[0]["exerciseName"];
+
+        // then do an if test here to compare the exercise name from that query to the $exerciseName here.
+        if ($exerciseResult == $exerciseName) {
+            // if true, mark as selected. else leave selected as blank.
     ?>
-        <option id="<?= $exerciseID ?>" value="<?= $exerciseName ?>"><?= $exerciseName ?></option>
+        <option id="<?= $exerciseID ?>" value="<?= $exerciseName ?>" selected="selected"><?= $exerciseName ?></option>
     <?php
-
+        } else {
+            ?>
+            <option id="<?= $exerciseID ?>" value="<?= $exerciseName ?>" selected=""><?= $exerciseName ?></option>
+            <?php
+        }
     }
+
+    //todo: make selected above work. then submit form to pull up the exercise list and form for sets.
     ?>
 
 
