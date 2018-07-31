@@ -9,9 +9,7 @@ require_once (SITE_ROOT . "/./classes/Exercise.php");
 $databaseConnect = new DatabaseConnect();
 $pdo = $databaseConnect->getPdo();
 
-// this brings up all exercises for 1 type of exercise
-$exerciseName = "Squats";
-$getExerciseResult =  getAllExercises($exerciseName, $pdo);
+
 
 // day comes from the options page h ref
 $exerciseDay = trim($_GET['exerciseDay']);
@@ -67,46 +65,97 @@ foreach ($getList as $activeExercises) {
     Select your exercise to log:
 </div>
 
-<!-- Drop down of exercise here that will trigger table below -->
-<select name="selectLogExercise" id="selectLogExercise">
-    <?php
+<br>
+
+<form action="../controller/controller.php" method="post" name="exerciseForm">
+    <!-- Drop down of exercise here that will trigger table below -->
+    <select name="selectLogExercise" id="selectLogExercise">
+        <option value="">--Select an exercise to log--</option>
+        <?php
 
 
 
-    // loop through getList ar and select active exercises for this day
-    foreach ($getList as $activeExercises) {
+        // loop through getList ar and select active exercises for this day
+        foreach ($getList as $activeExercises) {
 
-        $exerciseName = $activeExercises["exerciseName"];
-        $exerciseID = $activeExercises["id"];
+            $activeExerciseName = $activeExercises["exerciseName"];
+            $exerciseID = $activeExercises["id"];
 
 
-        // do a query to exerciseSelect table to grab all available exercises.
-        $res = queryExerciseSelect();
-        echo '<pre><br>';
-        print_r($res);
-        echo '</pre><br>';
+            // do a query to exerciseSelect table to grab all available exercises.
+            $res = queryExerciseSelect();
+            echo '<pre><br>';
+            print_r($res);
+            echo '</pre><br>';
 
-        $exerciseResult = $res[0]["exerciseName"];
+            $exerciseResult = $res[0]["exerciseName"];
 
-        // then do an if test here to compare the exercise name from that query to the $exerciseName here.
-        if ($exerciseResult == $exerciseName) {
-            // if true, mark as selected. else leave selected as blank.
-    ?>
-        <option id="<?= $exerciseID ?>" value="<?= $exerciseName ?>" selected="selected"><?= $exerciseName ?></option>
-    <?php
-        } else {
-            ?>
-            <option id="<?= $exerciseID ?>" value="<?= $exerciseName ?>" selected=""><?= $exerciseName ?></option>
-            <?php
+            // then do an if test here to compare the exercise name from that query to the $exerciseName here.
+            if ($exerciseResult == $activeExerciseName) {
+
+                // if true, mark as selected. else leave selected as blank.
+        ?>
+            <option id="<?= $exerciseID ?>" value="<?= $activeExerciseName ?>" selected="selected"><?= $activeExerciseName ?></option>
+        <?php
+            } else {
+                ?>
+                <option id="<?= $exerciseID ?>" value="<?= $activeExerciseName ?>" selected=""><?= $activeExerciseName ?></option>
+                <?php
+            }
         }
-    }
 
-    //todo: make selected above work. then submit form to pull up the exercise list and form for sets.
-    ?>
+        //todo: need to do ajax call. When exercise is selected, bring correct form out
+        ?>
 
+    </select>
+    <input type="hidden" name="exerciseName" value="<?= $activeExerciseName ?>">
+    <div style="font-weight: 600;">Set 1:</div>
+    <div style="display: inline-block;">
+        <label for="weight1">Weight: </label>
+        <input type="number" name="weight1" value="" placeholder="Weight 1">
+    </div>
+    <div style="display: inline-block;">
+        <label for="rep1">Rep: </label>
+        <input type="number" name="rep1" value="" placeholder="Rep 1">
+    </div>
+    <br><br>
+    <div style="font-weight: 600;">Set 2:</div>
+    <div style="display: inline-block;">
+        <label for="weight2">Weight: </label>
+        <input type="number" name="weight2" value="" placeholder="Weight 2">
+    </div>
+    <div style="display: inline-block;">
+        <label for="rep2">Rep: </label>
+        <input type="number" name="rep2" value="" placeholder="Rep 2">
+    </div>
+    <br><br>
+    <div style="font-weight: 600;">Set 3:</div>
+    <div style="display: inline-block;">
+        <label for="weight3">Weight: </label>
+        <input type="number" name="weight3" value="" placeholder="Weight 3">
+    </div>
+    <div style="display: inline-block;">
+        <label for="rep3">Rep: </label>
+        <input type="number" name="rep3" value="" placeholder="Rep 3">
+    </div>
+    <br><br>
+    <div style="font-weight: 600;">Set 4:</div>
+    <div style="display: inline-block;">
+        <label for="weight4">Weight: </label>
+        <input type="number" name="weight4" value="" placeholder="Weight 4">
+    </div>
+    <div style="display: inline-block;">
+        <label for="rep4">Rep: </label>
+        <input type="number" name="rep4" value="" placeholder="Rep 4">
+    </div>
+    <br><br>
+    <input type="submit" value="Submit" name="submitExerciseDay">
+</form>
 
-</select>
+<?php
 
+?>
+<!----       May do this in another page          ----->
 <!-- This table will show your exercise history depending on what you pick -->
 <table>
     <tr>
@@ -122,7 +171,18 @@ foreach ($getList as $activeExercises) {
         <th>Rep Four</th>
     </tr>
     <?php
+
+    // this brings up all exercises for 1 type of exercise
+echo '<br>';
+echo 'exercise name is: ';
+echo $activeExerciseName;
+echo '<br>';
+    $getExerciseResult =  getAllExercises($activeExerciseName, $pdo);
+
         foreach ($getExerciseResult as $result) {
+            echo '<pre><br>';
+            print_r($result);
+            echo '</pre><br>';
     ?>
     <tr>
         <td><?= date("n/j/Y" ,strtotime($result["dateCreated"])); ?></td>
@@ -140,50 +200,6 @@ foreach ($getList as $activeExercises) {
         }
     ?>
 </table>
-
+<!------     End May do this in another page -------->
 
 <br>
-<form action="../controller/controller.php" method="post" name="exerciseForm">
-    <input type="hidden" name="squats" value="Squats">
-    <div style="font-weight: 600;">Set 1:</div>
-    <div style="display: inline-block;">
-        <label for="squatWeight1">Weight: </label>
-        <input type="number" name="squatWeight1" value="" placeholder="Weight 1">
-    </div>
-    <div style="display: inline-block;">
-        <label for="squatRep1">Rep: </label>
-        <input type="number" name="squatRep1" value="" placeholder="Rep 1">
-    </div>
-    <br><br>
-    <div style="font-weight: 600;">Set 2:</div>
-    <div style="display: inline-block;">
-        <label for="squatWeight2">Weight: </label>
-        <input type="number" name="squatWeight2" value="" placeholder="Weight 2">
-    </div>
-    <div style="display: inline-block;">
-        <label for="squatRep2">Rep: </label>
-        <input type="number" name="squatRep2" value="" placeholder="Rep 2">
-    </div>
-    <br><br>
-    <div style="font-weight: 600;">Set 3:</div>
-    <div style="display: inline-block;">
-        <label for="squatWeight3">Weight: </label>
-        <input type="number" name="squatWeight3" value="" placeholder="Weight 3">
-    </div>
-    <div style="display: inline-block;">
-        <label for="squatRep3">Rep: </label>
-        <input type="number" name="squatRep3" value="" placeholder="Rep 3">
-    </div>
-    <br><br>
-    <div style="font-weight: 600;">Set 4:</div>
-    <div style="display: inline-block;">
-        <label for="squatWeight4">Weight: </label>
-        <input type="number" name="squatWeight4" value="" placeholder="Weight 4">
-    </div>
-    <div style="display: inline-block;">
-        <label for="squatRep4">Rep: </label>
-        <input type="number" name="squatRep4" value="" placeholder="Rep 4">
-    </div>
-    <br><br>
-    <input type="submit" value="Submit" name="submitExerciseDay">
-</form>

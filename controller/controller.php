@@ -32,15 +32,15 @@ function setInactive ($exerciseDay, $exerciseType, $pdo)
 
 if (null !== (filter_input(INPUT_POST,"submitExerciseDay"))) {
 
-    $exerciseName   = $_POST["squats"];
-    $weightOne      = $_POST["squatWeight1"];
-    $setOne         = $_POST["squatRep1"];
-    $weightTwo      = $_POST["squatWeight2"];
-    $setTwo         = $_POST["squatRep2"];
-    $weightThree    = $_POST["squatWeight3"];
-    $setThree       = $_POST["squatRep3"];
-    $weightFour     = $_POST["squatWeight4"];
-    $setFour        = $_POST["squatRep4"];
+    $exerciseName   = $_POST["exerciseName"];
+    $weightOne      = $_POST["weight1"];
+    $setOne         = $_POST["rep1"];
+    $weightTwo      = $_POST["weight2"];
+    $setTwo         = $_POST["rep2"];
+    $weightThree    = $_POST["weight3"];
+    $setThree       = $_POST["rep3"];
+    $weightFour     = $_POST["weight4"];
+    $setFour        = $_POST["rep4"];
 
     exerciseLogCreate($exerciseName, $weightOne, $setOne, $weightTwo, $setTwo, $weightThree, $setThree, $weightFour, $setFour, $pdo);
 
