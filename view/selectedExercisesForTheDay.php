@@ -14,6 +14,7 @@ $getExercisesForDay = selectExercisesForDay($pdo);
 // get exercise name from url
 $day = trim($_GET["exerciseDay"]);
 ?>
+<script type="text/javascript">var day = <?= $day; ?></script>
 <style>
     #selectExerciseForDayContainer {
         display: block;
@@ -29,7 +30,7 @@ $day = trim($_GET["exerciseDay"]);
     <div class="row">
         <div class="col-md-12">
             <form action="../controller/controller.php?exerciseDay=<?= $day ?>" method="post" name="selectExercisesForTheDayForm" id="selectExercisesForTheDayForm">
-                <select name="exerciseType" onchange="showExerciseType(this.value)" style="display:block;">
+                <select name="exerciseType" onchange="showExerciseType(this.value, day)" style="display:block;">
                     <option value="" selected >--Select exercise type--</option>
                     <option value="legs">legs</option>
                     <option value="chest">chest</option>
@@ -66,7 +67,7 @@ $day = trim($_GET["exerciseDay"]);
 <script>
     // Ajax call to show exercise type selection.
     // This will populate the exercise options to choose from.
-    function showExerciseType(str)
+    function showExerciseType(str, day)
     {
         if (str === "") {
             document.getElementById("txtHint_1").innerHTML = "";
@@ -78,7 +79,7 @@ $day = trim($_GET["exerciseDay"]);
         } else {
 //            var display = document.getElementById("txtHint");
             var xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", "../controller/typeController.php?query=" + str, true);
+            xmlhttp.open("GET", "../controller/typeController.php?query=" + str + "exerciseDay=" + $day, true);
             xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xmlhttp.send();
 

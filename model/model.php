@@ -10,6 +10,8 @@ require_once(SITE_ROOT . "/./view/showSelectedExercisesToLogReps.php");
 
 $dbError = "";
 
+$query = $_GET['query'];
+var_dump($query);
 function getAllExercises($exerciseName, $pdo)
 {
     try {

@@ -13,13 +13,14 @@ $pdo = $databaseConnect->getPdo();
 
 // day comes from the options page h ref
 $exerciseDay = trim($_GET['exerciseDay']);
+echo '<br>';
 echo $exerciseDay;
 
 // pass the day from original link to this page to get active exercises for the day
 $getList = getSelectedExerciseForTheWeekday($exerciseDay, $pdo);
-//echo '<pre><br>';
-//print_r($getList);
-//echo '</pre><br>';
+echo '<pre><br>';
+print_r($getList);
+echo '</pre><br>';
 
 //$exerciseConnect = new Exercise($pdo);
 //$exercise_select_Ar = $exerciseConnect->exercise_select();
@@ -69,7 +70,7 @@ foreach ($getList as $activeExercises) {
 
 <form action="../controller/controller.php" method="post" name="exerciseForm">
     <!-- Drop down of exercise here that will trigger table below -->
-    <select name="selectLogExercise" id="selectLogExercise">
+    <select name="selectLogExercise" id="selectLogExercise" style="display:block;" onchange="selectExerciseTypeV2(this.value)">
         <option value="">--Select an exercise to log--</option>
         <?php
 
@@ -104,7 +105,7 @@ foreach ($getList as $activeExercises) {
             }
         }
 
-        //todo: need to do ajax call. When exercise is selected, bring correct form out
+        //todo: after first exercise is logged, need to figure out how to either go to the next exercise, then save it, then again.
         ?>
 
     </select>
@@ -175,6 +176,9 @@ foreach ($getList as $activeExercises) {
     // this brings up all exercises for 1 type of exercise
 echo '<br>';
 echo 'exercise name is: ';
+?>
+    <div id="showExerciseHistory"></div>
+<?php
 echo $activeExerciseName;
 echo '<br>';
     $getExerciseResult =  getAllExercises($activeExerciseName, $pdo);
@@ -203,3 +207,41 @@ echo '<br>';
 <!------     End May do this in another page -------->
 
 <br>
+
+<?php
+echo '<pre><br>';
+print_r($exerciseTypeResultAr);
+echo '</pre><br>';
+?>
+
+<script>
+    // Ajax call to show exercise type selection.
+    // This will populate the exercise options to choose from.
+    function selectExerciseTypeV2(str)
+    {
+        if (str === "") {
+            document.getElementById("showExerciseHistory").innerHTML = "";
+            return true;
+        } else {
+            console.log(str);
+//            var display = document.getElementById("txtHint");
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "../model/model.php?query=" + str, true);
+            xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xmlhttp.send();
+
+            xmlhttp.onreadystatechange = function ()
+            {
+                if (this.readyState === 4 && this.status === 200) {
+
+                    document.getElementById("showExerciseHistory").innerHTML = this.responseText;
+                    // adding count to txthint and trying to loop but not working
+
+
+                } else {
+                    document.getElementById("showExerciseHistory").innerHTML = "Something went wrong...";
+                }
+            };
+        }
+    }
+</script>
